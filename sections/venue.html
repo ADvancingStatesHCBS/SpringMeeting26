@@ -1,266 +1,274 @@
 <div id="venue-section"></div>
 
 <style>
-:root {
-    --venue-primary: #006273;
-    --venue-accent: #58b0e2;
-    --venue-text: #ffffff;
-    --venue-text-muted: rgba(255, 255, 255, 0.8);
-    --venue-card-bg: rgba(255, 255, 255, 0.1);
-    --venue-card-border: rgba(255, 255, 255, 0.2);
-    --venue-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
+    :root {
+        --venue-primary: #006273;
+        --venue-accent: #58b0e2;
+        --venue-text: #ffffff;
+        --venue-text-muted: rgba(255, 255, 255, 0.8);
+        --venue-card-bg: rgba(255, 255, 255, 0.1);
+        --venue-card-border: rgba(255, 255, 255, 0.2);
+        --venue-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
 
-.venue-wrapper {
-    background-color: var(--venue-primary);
-    width: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    box-sizing: border-box;
-}
+    .venue-wrapper {
+        background-color: var(--venue-primary);
+        width: 100%;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        box-sizing: border-box;
+    }
 
-.venue-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 80px 20px;
-    display: flex;
-    gap: 60px;
-    align-items: center;
-    color: var(--venue-text);
-}
-
-.venue-content {
-    flex: 1;
-    min-width: 300px;
-}
-
-.venue-label {
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #318332;
-    margin-bottom: 16px;
-    display: inline-block;
-    background: #ffffff;
-    padding: 6px 12px;
-    border-radius: 4px;
-}
-
-.venue-title {
-    font-size: 48px;
-    font-weight: 800;
-    margin: 0 0 24px 0;
-    line-height: 1.1;
-}
-
-.venue-description {
-    font-size: 18px;
-    color: var(--venue-text-muted);
-    line-height: 1.6;
-    margin-bottom: 48px;
-    max-width: 500px;
-}
-
-.venue-detail-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.venue-icon-box {
-    width: 56px;
-    height: 56px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid var(--venue-card-border);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    padding: 8px;
-    transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.venue-detail-row:hover .venue-icon-box {
-    background: var(--venue-accent);
-    transform: scale(1.05);
-    border-color: var(--venue-accent);
-}
-
-.venue-icon-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.venue-text-content strong {
-    display: block;
-    font-size: 20px;
-    margin-bottom: 6px;
-}
-
-.venue-text-content span {
-    font-size: 16px;
-    color: var(--venue-text-muted);
-    display: block;
-    line-height: 1.5;
-}
-
-.venue-right {
-    flex: 1;
-    width: 100%;
-    max-width: 600px;
-}
-
-.venue-map-card {
-    background: #fff;
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
-    height: 400px;
-    box-shadow: var(--venue-shadow);
-    margin-bottom: 24px;
-    background-image: url('https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/6b714eb86a2e4806af8187527d4ed5cb.png');
-    background-size: cover;
-    background-position: center;
-}
-
-.venue-map-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0, 98, 115, 0.85), rgba(0, 74, 87, 0.95));
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 40px;
-}
-
-.map-pin-circle {
-    width: 60px;
-    height: 60px;
-    background: var(--venue-accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 20px rgba(88, 176, 226, 0.5);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(88, 176, 226, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(88, 176, 226, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(88, 176, 226, 0); }
-}
-
-.map-hotel-name {
-    font-size: 26px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.map-address {
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 30px;
-    max-width: 80%;
-}
-
-.btn-directions {
-    background-color: #ffffff;
-    color: var(--venue-primary);
-    text-decoration: none;
-    padding: 16px 32px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 16px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.btn-directions:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    background-color: #f0f8ff;
-}
-
-.venue-amenities {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-
-.amenity-card {
-    background: var(--venue-card-bg);
-    border: 1px solid var(--venue-card-border);
-    padding: 20px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: default;
-}
-
-.amenity-card:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    border-color: rgba(255, 255, 255, 0.4);
-}
-
-.amenity-icon-container {
-    width: 45px;
-    height: 45px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.amenity-icon-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.amenity-text {
-    font-weight: 600;
-    font-size: 16px;
-}
-
-@media (max-width: 968px) {
     .venue-container {
-        flex-direction: column;
-        padding: 50px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 20px;
+        display: flex;
+        gap: 60px;
+        align-items: center;
+        color: var(--venue-text);
     }
-    .venue-right {
-        max-width: 100%;
-    }
-    .venue-title {
-        font-size: 36px;
-    }
-    .venue-map-card {
-        height: 350px;
-    }
-}
 
-@media (max-width: 600px) {
-    .venue-amenities {
-        grid-template-columns: 1fr;
+    /* Left Column */
+    .venue-content {
+        flex: 1;
+        min-width: 300px;
     }
+
+    .venue-label {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #318332;
+        margin-bottom: 16px;
+        display: inline-block;
+        background: #ffffff;
+        padding: 6px 12px;
+        border-radius: 4px;
+    }
+
+    .venue-title {
+        font-size: 48px;
+        font-weight: 800;
+        margin: 0 0 24px 0;
+        line-height: 1.1;
+    }
+
+    .venue-description {
+        font-size: 18px;
+        color: var(--venue-text-muted);
+        line-height: 1.6;
+        margin-bottom: 48px;
+        max-width: 500px;
+    }
+
+    /* Location Rows (Left Side) */
     .venue-detail-row {
-        flex-direction: row;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        margin-bottom: 30px;
     }
-}
+
+    .venue-icon-box {
+        width: 56px;
+        height: 56px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--venue-card-border);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0; /* Prevents squishing */
+        padding: 8px;
+        transition: transform 0.3s ease, background 0.3s ease;
+    }
+    
+    .venue-detail-row:hover .venue-icon-box {
+        background: var(--venue-accent);
+        transform: scale(1.05);
+        border-color: var(--venue-accent);
+    }
+
+    .venue-icon-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Ensures aspect ratio is preserved */
+    }
+
+    .venue-text-content strong {
+        display: block;
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
+    .venue-text-content span {
+        font-size: 16px;
+        color: var(--venue-text-muted);
+        display: block;
+        line-height: 1.5;
+    }
+
+    /* Right Column */
+    .venue-right {
+        flex: 1;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    /* Map Card */
+    .venue-map-card {
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        height: 400px;
+        box-shadow: var(--venue-shadow);
+        margin-bottom: 24px;
+        background-image: url('https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/6b714eb86a2e4806af8187527d4ed5cb.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .venue-map-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(0, 98, 115, 0.85), rgba(0, 74, 87, 0.95));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 40px;
+    }
+
+    .map-pin-circle {
+        width: 60px;
+        height: 60px;
+        background: var(--venue-accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 20px rgba(88, 176, 226, 0.5);
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(88, 176, 226, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(88, 176, 226, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(88, 176, 226, 0); }
+    }
+
+    .map-hotel-name {
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .map-address {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 30px;
+        max-width: 80%;
+    }
+
+    /* "Get Directions" Button */
+    .btn-directions {
+        background-color: #ffffff;
+        color: var(--venue-primary);
+        text-decoration: none;
+        padding: 16px 32px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .btn-directions:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        background-color: #f0f8ff;
+    }
+
+    /* Amenities Grid */
+    .venue-amenities {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .amenity-card {
+        background: var(--venue-card-bg);
+        border: 1px solid var(--venue-card-border);
+        padding: 20px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: default;
+    }
+
+    .amenity-card:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Fixed Container for Amenity Icons */
+    .amenity-icon-container {
+        width: 45px;  /* Fixed width to prevent squishing */
+        height: 45px; /* Fixed height */
+        flex-shrink: 0; /* CRITICAL: Prevents flexbox from compressing the icon */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .amenity-icon-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* CRITICAL: Ensures image fits inside without distortion */
+    }
+
+    .amenity-text {
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 968px) {
+        .venue-container {
+            flex-direction: column;
+            padding: 50px 20px;
+        }
+        .venue-right {
+            max-width: 100%;
+        }
+        .venue-title {
+            font-size: 36px;
+        }
+        .venue-map-card {
+            height: 350px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .venue-amenities {
+            grid-template-columns: 1fr;
+        }
+        .venue-detail-row {
+            flex-direction: row;
+        }
+    }
 </style>
 
 <div class="venue-wrapper">
@@ -299,7 +307,7 @@
                     <div class="map-pin-circle">📍</div>
                     <div class="map-hotel-name">Marriott City Center</div>
                     <div class="map-address">30 South 7th St, Minneapolis, MN</div>
-
+                    
                     <a href="https://www.google.com/maps/search/?api=1&query=Minneapolis+Marriott+City+Center+30+South+7th+Street+Minneapolis+MN+55402" target="_blank" class="btn-directions">
                         <span>Get Directions</span>
                         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
