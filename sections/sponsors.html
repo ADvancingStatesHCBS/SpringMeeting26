@@ -1,269 +1,270 @@
 <div id="banner" style="position: absolute; margin-top: -90px;"></div>
-
 <style>
-.full-width-section {
-    max-width: 100% !important;
-    width: 100% !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-}
+    .full-width-section {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
 
-.full-width-section > div {
-    max-width: 100% !important;
-    width: 100% !important;
-}
+    .full-width-section > div {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
 
-.sponsor-banner-wrapper {
-    padding: 20px 0;
-    background-color: #ffffff;
-    overflow: hidden;
-    width: 100%;
-}
+    .sponsor-banner-wrapper {
+        padding: 20px 0;
+        background-color: #ffffff;
+        overflow: hidden;
+        width: 100%;
+    }
 
-.sponsor-banner {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #ffffff;
-    padding: 25px 0 25px 0;
-    overflow: hidden;
-    width: 100%;
-}
+    .sponsor-banner {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: #ffffff;
+        padding: 25px 0 25px 0;
+        overflow: hidden;
+        width: 100%;
+    }
 
-.sponsor-label {
-    text-align: center;
-    font-size: 28px;
-    font-weight: 700;
-    font-style: italic;
-    color: #006273;
-    margin-bottom: 40px;
-}
+    .sponsor-label {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        font-style: italic;
+        color: #006273;
+        margin-bottom: 40px;
+    }
 
-.sponsor-hint {
-    text-align: center;
-    font-size: 21px;
-    color: #006273;
-    margin-top: 40px;
-}
+    .sponsor-hint {
+        text-align: center;
+        font-size: 21px;
+        color: #006273;
+        margin-top: 40px;
+    }
 
-.sponsor-track-container {
-    overflow: hidden;
-    position: relative;
-}
+    .sponsor-track-container {
+        overflow: hidden;
+        position: relative;
+    }
 
-.sponsor-track {
-    display: flex;
-    align-items: center;
-    width: max-content;
-    animation: scroll 45s linear infinite;
-}
+    .sponsor-track {
+        display: flex;
+        align-items: center;
+        width: max-content;
+        animation: scroll 60s linear infinite;
+    }
 
-.sponsor-track-container:hover .sponsor-track {
-    animation-play-state: paused;
-}
+    .sponsor-track-container:hover .sponsor-track {
+        animation-play-state: paused;
+    }
 
-.sponsor-logo {
-    flex-shrink: 0;
-    padding: 20px 40px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
+    .sponsor-logo {
+        flex-shrink: 0;
+        padding: 20px 40px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
 
-.sponsor-logo:hover {
-    transform: scale(1.08);
-}
+    .sponsor-logo:hover {
+        transform: scale(1.08);
+    }
 
-.sponsor-logo img {
-    max-height: 100px;
-    max-width: 220px;
-    object-fit: contain;
-}
+    .sponsor-logo img {
+        max-height: 100px;
+        max-width: 220px;
+        object-fit: contain;
+    }
 
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
 
-/* Modal Overlay */
-.sponsor-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+    /* Modal Overlay */
+    .sponsor-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
 
-.sponsor-modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
+    .sponsor-modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
 
-.sponsor-modal {
-    background: white;
-    border-radius: 16px;
-    max-width: 600px;
-    width: 90%;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    transform: scale(0.9) translateY(20px);
-    transition: transform 0.3s ease;
-    position: relative;
-}
+    .sponsor-modal {
+        background: white;
+        border-radius: 16px;
+        max-width: 600px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        transform: scale(0.9) translateY(20px);
+        transition: transform 0.3s ease;
+        position: relative;
+    }
 
-.sponsor-modal-overlay.active .sponsor-modal {
-    transform: scale(1) translateY(0);
-}
+    .sponsor-modal-overlay.active .sponsor-modal {
+        transform: scale(1) translateY(0);
+    }
 
-.sponsor-modal-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 36px;
-    height: 36px;
-    border: 1px solid #e0e0e0;
-    border-radius: 50%;
-    background: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    z-index: 1;
-}
+    .sponsor-modal-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 36px;
+        height: 36px;
+        border: 1px solid #e0e0e0;
+        border-radius: 50%;
+        background: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        z-index: 1;
+    }
 
-.sponsor-modal-close:hover {
-    background: #f5f5f5;
-    border-color: #ccc;
-}
+    .sponsor-modal-close:hover {
+        background: #f5f5f5;
+        border-color: #ccc;
+    }
 
-.sponsor-modal-close svg {
-    width: 18px;
-    height: 18px;
-    stroke: #666;
-    stroke-width: 2;
-}
+    .sponsor-modal-close svg {
+        width: 18px;
+        height: 18px;
+        stroke: #666;
+        stroke-width: 2;
+    }
 
-.sponsor-modal-header {
-    padding: 30px 30px 20px;
-    border-bottom: 1px solid #eee;
-}
+    .sponsor-modal-header {
+        padding: 30px 30px 20px;
+        border-bottom: 1px solid #eee;
+    }
 
-.sponsor-modal-title {
-    font-size: 24px;
-    font-weight: 700;
-    color: #1a4a5e;
-    margin-bottom: 16px;
-    padding-right: 40px;
-}
+    .sponsor-modal-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #1a4a5e;
+        margin-bottom: 16px;
+        padding-right: 40px;
+    }
 
-.sponsor-modal-badge-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+    .sponsor-modal-badge-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
 
-.sponsor-modal-logo {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    .sponsor-modal-logo {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-.sponsor-modal-logo img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
+    .sponsor-modal-logo img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
 
-.sponsor-modal-badge {
-    background: linear-gradient(135deg, #1a4a5e 0%, #2d6a7a 100%);
-    color: white;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-}
+    .sponsor-modal-badge {
+        background: linear-gradient(135deg, #1a4a5e 0%, #2d6a7a 100%);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+    }
 
-.sponsor-modal-body {
-    padding: 24px 30px;
-}
+    .sponsor-modal-body {
+        padding: 24px 30px;
+    }
 
-.sponsor-modal-section-title {
-    font-size: 12px;
-    font-weight: 700;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-}
+    .sponsor-modal-section-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+    }
 
-.sponsor-modal-bio {
-    font-size: 15px;
-    line-height: 1.7;
-    color: #444;
-    margin-bottom: 28px;
-}
+    .sponsor-modal-bio {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #444;
+        margin-bottom: 28px;
+        white-space: pre-line; /* Essential for preserving double newlines as gaps */
+    }
 
-.sponsor-modal-connect {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
+    .sponsor-modal-connect {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 
-.sponsor-modal-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-decoration: none;
-    color: #333;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
+    .sponsor-modal-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
 
-.sponsor-modal-link:hover {
-    background: #f8f8f8;
-    border-color: #1a4a5e;
-    color: #1a4a5e;
-}
+    .sponsor-modal-link:hover {
+        background: #f8f8f8;
+        border-color: #1a4a5e;
+        color: #1a4a5e;
+    }
 
-.sponsor-modal-link.disabled {
-    opacity: 0.4;
-    pointer-events: none;
-}
+    .sponsor-modal-link.disabled {
+        opacity: 0.4;
+        pointer-events: none;
+        display: none; /* Hide if no link */
+    }
 
-.sponsor-modal-link svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
-}
+    .sponsor-modal-link svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+    }
 
-@media (max-width: 768px) {
-    .sponsor-banner-wrapper { padding: 15px 0; }
-    .sponsor-label { font-size: 22px; margin-bottom: 20px; }
-    .sponsor-logo { padding: 15px 25px; }
-    .sponsor-logo img { max-height: 60px; max-width: 150px; }
-    .sponsor-modal { width: 95%; margin: 10px; }
-    .sponsor-modal-header { padding: 24px 20px 16px; }
-    .sponsor-modal-title { font-size: 20px; }
-    .sponsor-modal-body { padding: 20px; }
-    .sponsor-modal-bio { font-size: 14px; }
-}
+    @media (max-width: 768px) {
+        .sponsor-banner-wrapper { padding: 15px 0; }
+        .sponsor-label { font-size: 22px; margin-bottom: 20px; }
+        .sponsor-logo { padding: 15px 25px; }
+        .sponsor-logo img { max-height: 60px; max-width: 150px; }
+        .sponsor-modal { width: 95%; margin: 10px; }
+        .sponsor-modal-header { padding: 24px 20px 16px; }
+        .sponsor-modal-title { font-size: 20px; }
+        .sponsor-modal-body { padding: 20px; }
+        .sponsor-modal-bio { font-size: 14px; }
+    }
 </style>
 
 <div class="sponsor-banner-wrapper">
@@ -301,75 +302,209 @@
 </div>
 
 <script>
-const sponsors = [
-    { name: "Acentra Health", logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/0e4bdbb6eea744f9b753fb1c5b2bea9f.png", bio: "Acentra Health combines public health management expertise with technology to help government agencies improve health outcomes. Their innovative solutions support states in delivering quality care to vulnerable populations.", website: "https://acentra.com", linkedin: "https://linkedin.com/company/acentra-health", facebook: "", twitter: "" },
-    { name: "Centene Corporation", logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/72ac70b4672847bc9fc4114d941f31d0.png", bio: "Centene is a leading healthcare enterprise committed to helping people live healthier lives through innovative programs and services. They provide a portfolio of services to government-sponsored healthcare programs.", website: "https://centene.com", linkedin: "https://linkedin.com/company/centene-corporation", facebook: "https://facebook.com/CenteneCorp", twitter: "https://twitter.com/CenteneCorp" },
-    { name: "Elevance Health", logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/436bbd74457b4a8a914d171d27def7ec.png", bio: "Elevance Health is a health company dedicated to improving lives and communities through better health outcomes. They serve more than 118 million people through their family of health plans.", website: "https://elevancehealth.com", linkedin: "https://linkedin.com/company/elevancehealth", facebook: "", twitter: "https://twitter.com/ElevanceHealth" },
-    { name: "FEI Systems", logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/85b9efd938814dc190020fa2b4d4e690.png", bio: "For more than 25 years, FEI Systems has provided innovative IT solutions that assist federal, state and local health and human services agencies in caring for the most vulnerable members of their communities. FEI's Blue Compass suite of solutions includes a host of modules designed to address common requirements while meeting the unique and complex needs of each of the agencies and organizations we serve.", website: "https://feisystems.com", linkedin: "https://linkedin.com/company/fei-systems", facebook: "", twitter: "" },
-    { name: "GT Independence", logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/53ea7eea9cd14b46af19af1becf5bf19.png", bio: "GT Independence empowers people with disabilities to live independently through self-directed support services. They provide financial management services that give individuals control over their care.", website: "https://gtindependence.com", linkedin: "https://linkedin.com/company/gt-independence", facebook: "https://facebook.com/gtindependence", twitter: "" },
-    { name: "Humana Healthy Horizons", logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/5e10fbeeb2e345fe9475f529b5369dde.png", bio: "Humana Healthy Horizons provides Medicaid and Medicare services focused on whole-person health and community support. They integrate medical care with social services to improve member outcomes.", website: "https://humana.com", linkedin: "https://linkedin.com/company/humana", facebook: "https://facebook.com/humana", twitter: "https://twitter.com/humana" },
-    { name: "Mathematica", logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/e05a6ccde3ec48849a9f0c5124ead9c0.png", bio: "Mathematica applies data analytics and research to improve public well-being through evidence-based policy solutions. They partner with governments to evaluate and improve programs serving vulnerable populations.", website: "https://mathematica.org", linkedin: "https://linkedin.com/company/mathematica-policy-research", facebook: "", twitter: "https://twitter.com/MathematicaNow" },
-    { name: "Maximus", logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/654e9b65ec244f668a24e559591884f9.png", bio: "Maximus helps government serve the people through technology and services that improve health and employment outcomes. They operate programs that connect citizens with essential services.", website: "https://maximus.com", linkedin: "https://linkedin.com/company/maximus", facebook: "https://facebook.com/maximusinc", twitter: "https://twitter.com/Maximus" },
-    { name: "Mercer", logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/7ec99940a6a5440ba93435991c126ab2.png", bio: "Mercer delivers advice and technology-driven solutions to help organizations meet the health and financial needs of their people. They provide consulting services to government health programs.", website: "https://mercer.com", linkedin: "https://linkedin.com/company/mercer", facebook: "https://facebook.com/mercer", twitter: "https://twitter.com/Mercer" },
-    { name: "Molina Healthcare", logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/acd4db92635e4badac1f93176d9833e2.png", bio: "Molina Healthcare provides quality healthcare to people receiving government assistance with a focus on HCBS programs. They serve millions of members through Medicaid and Medicare programs.", website: "https://molinahealthcare.com", linkedin: "https://linkedin.com/company/molina-healthcare", facebook: "https://facebook.com/MolinaHealthcare", twitter: "https://twitter.com/MolinaHealth" },
-    { name: "Mon Ami", logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/83b9b1cb3a944a36bcc28eb32fea4167.png", bio: "Mon Ami connects older adults and people with disabilities to community resources and volunteer support services. Their platform enables meaningful connections that reduce isolation.", website: "https://monami.io", linkedin: "https://linkedin.com/company/mon-ami", facebook: "", twitter: "" },
-    { name: "Pulselight", logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/a9b7815265ed42ddbb5d6007499cd3e3.png", bio: "Pulselight provides innovative technology solutions for healthcare organizations to improve care coordination and outcomes. Their tools help agencies manage complex care delivery.", website: "https://pulselight.com", linkedin: "https://linkedin.com/company/pulselight", facebook: "", twitter: "" },
-    { name: "Therap Services", logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/1c7bc967a427486d8aef0c61f2be4781.png", bio: "Therap provides comprehensive electronic documentation and communication solutions for disability service providers. Their platform supports person-centered care across all settings.", website: "https://therapservices.net", linkedin: "https://linkedin.com/company/therap-services", facebook: "https://facebook.com/therapservices", twitter: "https://twitter.com/TherapServices" },
-    { name: "WellSky", logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/d7f4cc5669a348fe853433d714bb236e.jpg", bio: "WellSky provides technology solutions enabling healthcare providers to deliver better care and improve outcomes. They serve the continuum of care from acute to post-acute settings.", website: "https://wellsky.com", linkedin: "https://linkedin.com/company/wellsky", facebook: "https://facebook.com/wellsky", twitter: "https://twitter.com/WellSky" }
-];
+    const sponsors = [
+        {
+            name: "FEI Systems",
+            logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/85b9efd938814dc190020fa2b4d4e690.png",
+            bio: "For more than 25 years, FEI Systems has provided innovative IT solutions that assist federal, state and local health and human services agencies in caring for the most vulnerable members of their communities. FEI’s Blue Compass suite of solutions includes a host of modules designed to address common requirements while meeting the unique and complex needs of each of the agencies and organizations we serve. Our case management for long-term services and supports system offers comprehensive tools for the cross-agency delivery of person-centered, coordinated health and human services.",
+            website: "https://www.feisystems.com",
+            linkedin: "https://www.linkedin.com/company/584683/admin/dashboard/",
+            facebook: "",
+            twitter: "",
+            instagram: ""
+        },
+        {
+            name: "Acentra Health",
+            logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/0e4bdbb6eea744f9b753fb1c5b2bea9f.png",
+            bio: "Acentra Health combines public sector knowledge, clinical expertise, and technological ingenuity to modernize the healthcare experience for state, federal, and commercial partners, and their priority populations. From designing and developing advanced claims, encounter, and provider solutions that drive efficiency and cost savings to delivering clinically focused solution models for care management, clinical assessments, and quality oversight, Acentra Health is accelerating better health outcomes.",
+            website: "https://www.acentra.com",
+            linkedin: "https://www.linkedin.com/company/acentra-health/",
+            facebook: "",
+            twitter: "",
+            instagram: ""
+        },
+        {
+            name: "Centene Corporation",
+            logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/72ac70b4672847bc9fc4114d941f31d0.png",
+            bio: "Centene is the largest Medicaid managed care organization in the country and a national leader in managed long-term services and supports (LTSS). At Centene, we are driven by a singular purpose: to transform the health of the community one person at a time. Our unwavering commitment to whole health, with a focus on individuals, a local approach and community partnerships, helps us make sure each person receives the most appropriate support and services for their unique needs and independence.",
+            website: "https://www.centene.com/LTSS",
+            linkedin: "",
+            facebook: "",
+            twitter: "",
+            instagram: ""
+        },
+        {
+            name: "Pulselight",
+            logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/a9b7815265ed42ddbb5d6007499cd3e3.png",
+            bio: "Pulselight is a woman-owned software company developing analytic products that address the most urgent challenges in today’s health and human services environment.\n\nOur solutions are built for person-centric care and designed for the professionals who make critical decisions about quality, health, and safety.\n\nWhat sets Pulselight apart is our suite of commercial-off-the-shelf products that ingest and synthesize complex data about people, providers, and programs—while delivering a simple, intuitive user experience.\n\nThrough our web-based applications, users can explore information at any depth, from one-click searches to advanced interactive analysis.\n\nOur products empower users to make informed decisions around quality, program integrity, compliance, cost efficiency, and improved outcomes.\n\nWe are committed to innovation and usability in everything we build, enabling our users to stay focused on their own mission: serving those in need and supporting programs that excel through integrity.",
+            website: "https://www.pulselight.com",
+            linkedin: "https://www.linkedin.com/company/pulselight",
+            facebook: "",
+            twitter: "",
+            instagram: ""
+        },
+        {
+            name: "Elevance Health",
+            logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/436bbd74457b4a8a914d171d27def7ec.png",
+            bio: "Elevance Health is a leading health company dedicated to improving lives and communities and making healthcare simpler. Through its affiliated companies, Elevance Health serves over 111 million people, including 45.7 million within its family of health plans. Delivering health beyond healthcare, Elevance Health is expanding from being a partner in health benefits to a lifetime, trusted health partner.",
+            website: "https://www.elevancehealth.com",
+            linkedin: "https://www.linkedin.com/company/elevance-health/",
+            facebook: "https://m.facebook.com/Elevance-Health/",
+            twitter: "https://x.com/ElevanceHealth",
+            instagram: "https://www.instagram.com/elevancehealth/"
+        },
+        {
+            name: "Maximus",
+            logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/654e9b65ec244f668a24e559591884f9.png",
+            bio: "Across all 50 states and D.C., Maximus helps government agencies streamline access to services through innovative efficiencies, domain expertise, and human-centered design to address complex challenges and move people forward. We bring business process management and technology solutions to enhance program efficiency and deliver the outcomes that matter most to each agency we serve. Our end-to-end support includes program eligibility and enrollment, centralized member and provider management, and clinical and long-term care assessments. As a trusted partner, we offer digital engagement strategies that efficiently meet people’s changing expectations. Learn more at maximus.com/state-and-local-government.",
+            website: "https://www.maximus.com",
+            linkedin: "https://www.linkedin.com/company/maximus",
+            facebook: "https://www.facebook.com/MaximusCareers",
+            twitter: "https://x.com/Maximus_news",
+            instagram: "https://www.instagram.com/maximuscareers/"
+        },
+        {
+            name: "Mathematica",
+            logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/e05a6ccde3ec48849a9f0c5124ead9c0.png",
+            bio: "Mathematica brings together policy experts, data scientists, methodologists, and technologists to design, test, and scale solutions that improve outcomes and drive meaningful change. With a commitment to providing end-to-end support, our offerings include research and evaluation services, advisory expertise, and data solutions. From initial design through final evaluation, we make programs, policies, and strategies more efficient, accountable, cost effective, and impactful.",
+            website: "https://www.mathematica.org/",
+            linkedin: "https://www.linkedin.com/company/mathematica-/",
+            facebook: "https://www.facebook.com/MathematicaNow/",
+            twitter: "https://x.com/MathematicaNow",
+            instagram: "https://www.instagram.com/mathematicanow/"
+        },
+        {
+            name: "Mercer Government",
+            logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/7ec99940a6a5440ba93435991c126ab2.png",
+            bio: "Mercer Government Human Services Consulting brings deep expertise in financial and actuarial analysis, policy and operations, clinical and behavioral health, and pharmacy to support states in strengthening home- and community-based services. We work with state agencies to design, evaluate, and sustain HCBS programs by aligning financing, policy, and service delivery to improve access, quality, and long-term system sustainability.",
+            website: "https://www.mercer-government.mercer.com",
+            linkedin: "",
+            facebook: "",
+            twitter: "",
+            instagram: ""
+        },
+        {
+            name: "Humana Healthy Horizons",
+            logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/5e10fbeeb2e345fe9475f529b5369dde.png",
+            bio: "Humana Healthy Horizons is more than a health plan. We’re human care. With over 1.4 million members across 11 states, we focus on helping people achieve their best health. Together with state governments, providers, and community-based organizations, we address social determinants, drive better outcomes and advance public health.",
+            website: "https://www.humana.com/medicaid",
+            linkedin: "",
+            facebook: "",
+            twitter: "",
+            instagram: ""
+        },
+        {
+            name: "Molina Healthcare",
+            logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/acd4db92635e4badac1f93176d9833e2.png",
+            bio: "Molina believes every person, family and community deserves access to high-quality health care. Our mission is to deliver effective, reliable, and affordable healthcare to those who receive government-sponsored health care. We deliver a holistic, community-based approach designed to meet the individual needs of our over 5.6 million members across the country.",
+            website: "https://www.molinahealthcare.com",
+            linkedin: "",
+            facebook: "",
+            twitter: "",
+            instagram: ""
+        },
+        {
+            name: "Therap Services",
+            logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/1c7bc967a427486d8aef0c61f2be4781.png",
+            bio: "Therap Services is a comprehensive electronic documentation solution tailored for state and local government agencies in the human services eld. Our widely-adopted platform helps streamline internal program processes, service delivery, and billing. Contracted by over 20 states and local governments nationwide, Therap empowers agencies with the tools they need to focus on meaningful outcomes for the people they support.",
+            website: "https://www.therapservices.net",
+            linkedin: "https://www.linkedin.com/company/therap-services-llc",
+            facebook: "https://www.facebook.com/therapservices",
+            twitter: "https://x.com/therapservices",
+            instagram: ""
+        },
+        {
+            name: "Mon Ami",
+            logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/83b9b1cb3a944a36bcc28eb32fea4167.png",
+            bio: "Mon Ami is your agency's modern database solution. Automate your OAAPS reporting. Manage waiver programs end-to-end. Track compliance. Intuitive and easy-to-use. Endless reporting and data analytics capabilities. ",
+            website: "https://www.monami.io",
+            linkedin: "",
+            facebook: "",
+            twitter: "",
+            instagram: ""
+        },
+        {
+            name: "GT Independence",
+            logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/53ea7eea9cd14b46af19af1becf5bf19.png",
+            bio: "\tGT Independence is a family-built, disability-led financial management services (FMS) company dedicated to helping people live the life they choose, regardless of age or ability.\n\nThe company began when the Carmichael family searched for support for their oldest son, Ben, and asked a simple but transformative question: Why can’t people with disabilities live independently in their own homes and communities?\n\nThat question grew into a mission and ultimately into GT Independence.\n\nFounded in 2004 in Sturgis, Michigan, GT Independence has grown from a single family’s vision into a national leader serving tens of thousands of people across the United States.\n\nToday, the company supports Self-Direction programs in 19 states and Washington, D.C., empowering people to hire their own caregivers, manage their own services, and maintain control over their daily lives.\n\nGT is proudly disability-owned and led, with a workforce that reflects the diversity of the people it serves.\n\nBuilt on the values of inclusion, respect, and family, the organization remains committed to helping people direct their own long-term care and support services so they can live the life of their choosing.",
+            website: "https://www.gtindependence.com",
+            linkedin: "https://www.linkedin.com/company/gt-independence",
+            facebook: "https://www.facebook.com/gtindependence/",
+            twitter: "",
+            instagram: "https://www.instagram.com/gtsd_org/"
+        },
+        {
+            name: "WellSky",
+            logo: "https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/d7f4cc5669a348fe853433d714bb236e.jpg",
+            bio: "WellSky is a technology company leading the movement for intelligent, coordinated care. Our next-level software, analytics, and services power better outcomes and lower costs for stakeholders across the health and community care continuum. In today’s value-based care environment, WellSky helps state programs work more effectively with providers, payers, and health systems to solve tough challenges, improve collaboration for growth, harness the power of data analytics, and achieve better outcomes by further connecting clinical and social care.",
+            website: "https://www.wellsky.com",
+            linkedin: "",
+            facebook: "",
+            twitter: "",
+            instagram: ""
+        }
+    ];
 
-const icons = {
-    website: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`,
-    linkedin: `<svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>`,
-    facebook: `<svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>`,
-    twitter: `<svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`
-};
+    const icons = {
+        website: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`,
+        linkedin: `<svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>`,
+        facebook: `<svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>`,
+        twitter: `<svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
+        instagram: `<svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>`
+    };
 
-const linkLabels = { website: 'Website', linkedin: 'LinkedIn', facebook: 'Facebook', twitter: 'X (Twitter)' };
+    const linkLabels = { website: 'Website', linkedin: 'LinkedIn', facebook: 'Facebook', twitter: 'X (Twitter)', instagram: 'Instagram' };
 
-const modalOverlay = document.getElementById('sponsorModal');
-const modalClose = document.getElementById('modalClose');
-const modalTitle = document.getElementById('modalTitle');
-const modalLogo = document.getElementById('modalLogo');
-const modalBio = document.getElementById('modalBio');
-const modalConnect = document.getElementById('modalConnect');
+    const modalOverlay = document.getElementById('sponsorModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalLogo = document.getElementById('modalLogo');
+    const modalBio = document.getElementById('modalBio');
+    const modalConnect = document.getElementById('modalConnect');
 
-function openModal(sponsor) {
-    modalTitle.textContent = sponsor.name;
-    modalLogo.innerHTML = `<img src="${sponsor.logo}" alt="${sponsor.name}">`;
-    modalBio.textContent = sponsor.bio;
-    let connectHTML = '';
-    ['website', 'linkedin', 'facebook', 'twitter'].forEach(type => {
-        const url = sponsor[type];
-        const disabled = !url ? 'disabled' : '';
-        connectHTML += `<a href="${url || '#'}" target="_blank" rel="noopener noreferrer" class="sponsor-modal-link ${disabled}" ${disabled ? 'tabindex="-1"' : ''}>${icons[type]} ${linkLabels[type]}</a>`;
-    });
-    modalConnect.innerHTML = connectHTML;
-    modalOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
+    function openModal(sponsor) {
+        modalTitle.textContent = sponsor.name;
+        modalLogo.innerHTML = `<img src="${sponsor.logo}" alt="${sponsor.name}">`;
+        modalBio.textContent = sponsor.bio;
 
-function closeModal() {
-    modalOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-}
+        let connectHTML = '';
+        ['website', 'linkedin', 'facebook', 'twitter', 'instagram'].forEach(type => {
+            const url = sponsor[type];
+            // Only create the button if the URL is not empty
+            if (url && url.trim() !== '') {
+                connectHTML += `
+                    <a href="${url}" target="_blank" rel="noopener noreferrer" class="sponsor-modal-link">
+                        ${icons[type]} ${linkLabels[type]}
+                    </a>
+                `;
+            }
+        });
+        modalConnect.innerHTML = connectHTML;
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 
-modalClose.addEventListener('click', closeModal);
-modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal(); });
+    function closeModal() {
+        modalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 
-function createSponsorLogo(sponsor) {
-    const logoDiv = document.createElement('div');
-    logoDiv.className = 'sponsor-logo';
-    logoDiv.innerHTML = `<img src="${sponsor.logo}" alt="${sponsor.name}">`;
-    logoDiv.addEventListener('click', () => openModal(sponsor));
-    return logoDiv;
-}
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal(); });
 
-function initSponsorTrack() {
-    const track = document.getElementById('sponsorTrack');
-    [...sponsors, ...sponsors].forEach(sponsor => track.appendChild(createSponsorLogo(sponsor)));
-}
+    function createSponsorLogo(sponsor) {
+        const logoDiv = document.createElement('div');
+        logoDiv.className = 'sponsor-logo';
+        logoDiv.innerHTML = `<img src="${sponsor.logo}" alt="${sponsor.name}">`;
+        logoDiv.addEventListener('click', () => openModal(sponsor));
+        return logoDiv;
+    }
 
-document.addEventListener('DOMContentLoaded', initSponsorTrack);
+    function initSponsorTrack() {
+        const track = document.getElementById('sponsorTrack');
+        [...sponsors, ...sponsors].forEach(sponsor => track.appendChild(createSponsorLogo(sponsor)));
+    }
+
+    document.addEventListener('DOMContentLoaded', initSponsorTrack);
 </script>
