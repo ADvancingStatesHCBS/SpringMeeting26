@@ -1,185 +1,463 @@
-<div id="agenda" style="position: absolute; margin-top: -90px;"></div>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda Roadmap</title>
 <style>
-.agenda-wrapper {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #ffffff;
-    padding: 50px 6% 30px 6%;
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-}
+    :root {
+        --dark-blue: #006273;       
+        --dark-green: #318332;      
+        --light-blue: #3a8297;      
+        --light-green: #8ac65a;     
+        --text-dark: #333333;
+        --text-muted: #666666;
+        --bg-color: #f4f7f6;
+        --border-color: #e0e0e0;
+    }
 
-.agenda-header { margin-bottom: 30px; }
-.agenda-title { font-size: 42px; font-weight: bold; color: #006273; margin: 0 0 8px 0; }
-.agenda-subtitle { font-size: 18px; color: #8ac65a; font-weight: 600; letter-spacing: 1px; }
-.agenda-day-divider { font-size: 16px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #006273; margin: 30px 0 20px 110px; padding-bottom: 8px; border-bottom: 2px solid #006273; max-width: 300px; }
-.agenda-timeline { position: relative; max-width: 100%; }
-.agenda-item { display: flex; gap: 25px; margin-bottom: 20px; align-items: flex-start; }
-.agenda-time { flex: 0 0 80px; text-align: right; padding-top: 18px; }
-.agenda-time-value { font-size: 36px; font-weight: bold; color: #006273; line-height: 1; }
-.agenda-time-period { font-size: 14px; color: #3a8297; text-transform: uppercase; letter-spacing: 1px; }
-.agenda-marker { flex: 0 0 20px; display: flex; flex-direction: column; align-items: center; padding-top: 22px; }
-.agenda-dot { width: 14px; height: 14px; background-color: #8ac65a; transform: rotate(45deg); }
-.agenda-line { width: 2px; flex: 1; background-color: #d4d4d4; min-height: 60px; }
-.agenda-card { flex: 1; background-color: #ffffff; border-radius: 10px; padding: 20px 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.agenda-card-header { display: flex; justify-content: space-between; align-items: center; gap: 30px; }
-.agenda-card-content { flex: 1; }
-.agenda-card-title { font-size: 24px; font-weight: 600; color: #333; margin: 0 0 10px 0; }
-.agenda-card-tags { display: flex; gap: 8px; }
-.agenda-tag { font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 5px 12px; border-radius: 4px; }
-.agenda-tag-location { background-color: #f0f0f0; color: #666; }
-.agenda-tag-type { background-color: #318332; color: #fff; }
-.agenda-tag-breakout { background-color: #006273; color: #fff; }
-.agenda-tag-discussion { background-color: #3a8297; color: #fff; }
-.agenda-speakers { display: flex; flex-direction: row; gap: 30px; flex-shrink: 0; }
-.agenda-speaker { display: flex; align-items: center; gap: 12px; }
-.agenda-speaker-avatar { width: 55px; height: 55px; background-color: #d4d4d4; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
-.agenda-speaker-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.agenda-speaker-info { text-align: left; }
-.agenda-speaker-name { font-size: 18px; font-weight: 600; color: #333; line-height: 1.3; }
-.agenda-speaker-role { font-size: 14px; color: #888; line-height: 1.3; max-width: 220px; }
-.agenda-noline .agenda-line { display: none; }
-.agenda-noline { margin-bottom: 0; }
+    * { box-sizing: border-box; }
 
-@media (max-width: 1000px) { .agenda-speakers { flex-direction: column; gap: 12px; } }
-@media (max-width: 768px) {
-    .agenda-item { gap: 15px; }
-    .agenda-time { flex: 0 0 55px; }
-    .agenda-time-value { font-size: 26px; }
-    .agenda-card { padding: 18px; }
-    .agenda-card-header { flex-direction: column; align-items: flex-start; }
-    .agenda-speakers { flex-direction: row; flex-wrap: wrap; margin-top: 12px; }
-    .agenda-day-divider { margin-left: 70px; }
-}
+    .agenda-widget {
+        position: relative;
+        width: 100%;
+        height: 80vh; 
+        min-height: 600px;
+        background-color: var(--bg-color);
+        overflow: hidden; 
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        border: 1px solid #ddd;
+    }
+
+    .agenda-scroll-area {
+        height: 100%;
+        overflow-y: auto; 
+        scrollbar-width: none; 
+        -ms-overflow-style: none; 
+        padding-top: 50vh;
+        padding-bottom: 50vh;
+    }
+    .agenda-scroll-area::-webkit-scrollbar { display: none; }
+
+    .roadmap-line {
+        position: absolute;
+        top: 0; bottom: 0; left: 50%;
+        width: 4px;
+        background: repeating-linear-gradient(to bottom, #d0d0d0, #d0d0d0 10px, transparent 10px, transparent 20px);
+        transform: translateX(-50%);
+        z-index: 0;
+    }
+
+    .agenda-item {
+        position: relative;
+        width: 90%;
+        max-width: 600px; 
+        margin: 0 auto 150px auto; 
+        z-index: 2;
+        opacity: 0.3;
+        filter: blur(3px);
+        transform: scale(0.95);
+        transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        pointer-events: none; 
+    }
+
+    .agenda-item.is-focused {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+        pointer-events: auto;
+    }
+
+    .agenda-card {
+        background: linear-gradient(to bottom, #ffffff, var(--bg-color));
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        text-align: left;
+        border: 1px solid var(--border-color);
+        position: relative;
+    }
+    
+    .agenda-item.is-focused .agenda-card {
+        box-shadow: 0 20px 60px rgba(0, 98, 115, 0.15);
+        border-color: var(--dark-blue);
+    }
+
+    .header-box {
+        text-align: center;
+        background: linear-gradient(to bottom, #ffffff, var(--bg-color));
+        padding: 50px;
+        border-radius: 20px;
+        border-bottom: 6px solid var(--dark-blue);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .day-marker {
+        position: absolute;
+        top: -15px; left: 30px;
+        background: var(--dark-blue);
+        color: white;
+        padding: 6px 16px;
+        border-radius: 30px;
+        font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 1px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* --- Left-aligned cards with graphics on right --- */
+    @media (min-width: 900px) {
+        .agenda-item.left {
+            margin-right: 5%;
+            margin-left: 5%;
+            max-width: none;
+            width: 90%;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .agenda-item.left .agenda-card {
+            flex: 0 0 42%;
+            max-width: 42%;
+        }
+
+        .agenda-item.left::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 42%;
+            width: calc(8% - 2px);
+            height: 2px;
+            background: #d0d0d0;
+            transform: translateY(-50%);
+        }
+    }
+
+    .time-display {
+        font-size: 2.2rem; font-weight: 800; color: var(--dark-blue);
+        line-height: 1; margin-bottom: 10px; display: flex; align-items: center; gap: 12px;
+    }
+    .time-display span { font-size: 0.5em; text-transform: uppercase; }
+
+    .tag {
+        font-size: 0.4em; padding: 6px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px;
+        position: relative; top: -4px; color: white;
+    }
+    .tag-green { background-color: var(--light-green); color: black; }
+    .tag-blue { background-color: var(--light-blue); }
+
+    .card-title { font-size: 1.5rem; font-weight: 700; margin: 0 0 20px 0; color: var(--text-dark); line-height: 1.2; }
+
+    .speaker-row {
+        display: flex; align-items: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;
+    }
+    .speaker-img {
+        width: 45px; height: 45px; border-radius: 50%; object-fit: cover; margin-right: 12px;
+        border: 2px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .speaker-info h4 { margin: 0; color: var(--dark-blue); font-size: 0.95rem; font-weight: 700; }
+    .speaker-info p { margin: 0; color: var(--text-muted); font-size: 0.8rem; }
+
+    /* =============================================
+       Animated Graphics on Right Side
+       ============================================= */
+
+    .agenda-graphic {
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    @media (min-width: 900px) {
+        .agenda-graphic {
+            position: absolute;
+            left: 55%;
+            right: auto;
+            width: 250px;
+            height: 250px;
+        }
+    }
+
+    .agenda-item.is-focused .agenda-graphic {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+
+    .agenda-item:not(.is-focused) .agenda-graphic {
+        opacity: 0;
+        transform: translateY(-50%) scale(0.5) rotate(-15deg);
+    }
+
+    .graphic-svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+
+    /* --- Graphic Animations --- */
+    .agenda-item.is-focused .graphic-circle-1 {
+        stroke-dasharray: 502;
+        stroke-dashoffset: 502;
+        animation: drawCircle 1.2s ease-out forwards, pulseCircle 3s ease-in-out infinite 1.2s;
+    }
+
+    .agenda-item.is-focused .graphic-circle-2 {
+        stroke-dasharray: 377;
+        stroke-dashoffset: 377;
+        animation: drawCircle 1s ease-out 0.2s forwards, pulseCircle 3s ease-in-out infinite 1.2s;
+    }
+
+    .agenda-item.is-focused .graphic-circle-3 {
+        stroke-dasharray: 251;
+        stroke-dashoffset: 251;
+        animation: drawCircle 0.8s ease-out 0.4s forwards, rotateShape 8s linear infinite 0.8s;
+    }
+
+    .agenda-item.is-focused .graphic-star {
+        animation: fadeInStar 0.6s ease-out 0.6s forwards, pulseStar 2s ease-in-out infinite 1.2s;
+        opacity: 0;
+    }
+
+    .agenda-item.is-focused .graphic-rect-1 {
+        stroke-dasharray: 480;
+        stroke-dashoffset: 480;
+        animation: drawCircle 1s ease-out forwards, floatRect 4s ease-in-out infinite 1s;
+    }
+
+    .agenda-item.is-focused .graphic-rect-2 {
+        stroke-dasharray: 360;
+        stroke-dashoffset: 360;
+        animation: drawCircle 0.8s ease-out 0.2s forwards, floatRect 4s ease-in-out infinite reverse 1s;
+    }
+
+    .agenda-item.is-focused .graphic-rect-3 {
+        animation: fadeInStar 0.5s ease-out 0.4s forwards, pulseStar 3s ease-in-out infinite 1s;
+        opacity: 0;
+    }
+
+    .agenda-item.is-focused .graphic-line-1 {
+        stroke-dasharray: 140;
+        stroke-dashoffset: 140;
+        animation: drawLine 0.6s ease-out 0.6s forwards;
+    }
+
+    .agenda-item.is-focused .graphic-line-2 {
+        stroke-dasharray: 80;
+        stroke-dashoffset: 80;
+        animation: drawLine 0.4s ease-out 0.8s forwards;
+    }
+
+    .agenda-item.is-focused .graphic-dot-1 {
+        animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, floatDot 3s ease-in-out infinite 0.4s;
+        transform-origin: 60px 80px;
+        transform: scale(0);
+    }
+
+    .agenda-item.is-focused .graphic-dot-2 {
+        animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.15s forwards, floatDot 3s ease-in-out infinite reverse 0.55s;
+        transform-origin: 140px 80px;
+        transform: scale(0);
+    }
+
+    .agenda-item.is-focused .graphic-dot-3 {
+        animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards, floatDot 3s ease-in-out infinite 0.7s;
+        transform-origin: 100px 140px;
+        transform: scale(0);
+    }
+
+    .agenda-item.is-focused .graphic-connect-1 {
+        stroke-dasharray: 80;
+        stroke-dashoffset: 80;
+        animation: drawLine 0.5s ease-out 0.5s forwards;
+    }
+
+    .agenda-item.is-focused .graphic-connect-2 {
+        stroke-dasharray: 72;
+        stroke-dashoffset: 72;
+        animation: drawLine 0.5s ease-out 0.6s forwards;
+    }
+
+    .agenda-item.is-focused .graphic-connect-3 {
+        stroke-dasharray: 72;
+        stroke-dashoffset: 72;
+        animation: drawLine 0.5s ease-out 0.7s forwards;
+    }
+
+    /* Reset when not focused */
+    .agenda-item:not(.is-focused) .graphic-circle-1,
+    .agenda-item:not(.is-focused) .graphic-circle-2,
+    .agenda-item:not(.is-focused) .graphic-circle-3,
+    .agenda-item:not(.is-focused) .graphic-rect-1,
+    .agenda-item:not(.is-focused) .graphic-rect-2,
+    .agenda-item:not(.is-focused) .graphic-line-1,
+    .agenda-item:not(.is-focused) .graphic-line-2,
+    .agenda-item:not(.is-focused) .graphic-connect-1,
+    .agenda-item:not(.is-focused) .graphic-connect-2,
+    .agenda-item:not(.is-focused) .graphic-connect-3 {
+        stroke-dashoffset: 500;
+        animation: none;
+    }
+
+    .agenda-item:not(.is-focused) .graphic-star,
+    .agenda-item:not(.is-focused) .graphic-rect-3 {
+        opacity: 0;
+        animation: none;
+    }
+
+    .agenda-item:not(.is-focused) .graphic-dot-1,
+    .agenda-item:not(.is-focused) .graphic-dot-2,
+    .agenda-item:not(.is-focused) .graphic-dot-3 {
+        transform: scale(0);
+        animation: none;
+    }
+
+    @keyframes drawCircle { to { stroke-dashoffset: 0; } }
+    @keyframes drawLine { to { stroke-dashoffset: 0; } }
+    @keyframes pulseCircle { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.8; } }
+    @keyframes pulseStar { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.1); } }
+    @keyframes fadeInStar { to { opacity: 0.3; } }
+    @keyframes rotateShape { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes floatRect { 0%, 100% { transform: rotate(15deg) translateY(0); } 50% { transform: rotate(15deg) translateY(-5px); } }
+    @keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }
+    @keyframes floatDot { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.1) translateY(-3px); } }
+
+    @media (max-width: 899px) {
+        .agenda-graphic { display: none; }
+        .agenda-item.left { margin-left: auto; margin-right: auto; }
+    }
 </style>
+</head>
+<body>
 
-<div class="agenda-wrapper">
-    <div class="agenda-header">
-        <h2 class="agenda-title">Agenda at a Glance</h2>
-        <div class="agenda-subtitle">APRIL 27–29, 2026 • MINNEAPOLIS, MN</div>
-    </div>
-
-    <div class="agenda-timeline">
-        <div class="agenda-day-divider">Day 1 — Monday, April 27</div>
+<div class="agenda-widget">
+    <div class="roadmap-line"></div>
+    <div class="agenda-scroll-area" id="agendaScrollTrack">
 
         <div class="agenda-item">
-            <div class="agenda-time">
-                <div class="agenda-time-value">12:15</div>
-                <div class="agenda-time-period">PM</div>
-            </div>
-            <div class="agenda-marker">
-                <div class="agenda-dot"></div>
-                <div class="agenda-line"></div>
-            </div>
-            <div class="agenda-card">
-                <div class="agenda-card-header">
-                    <div class="agenda-card-content">
-                        <h3 class="agenda-card-title">Opening Welcome & Introduction</h3>
-                        <div class="agenda-card-tags">
-                            <span class="agenda-tag agenda-tag-location">Location TBD</span>
-                            <span class="agenda-tag agenda-tag-type">Opening</span>
-                        </div>
-                    </div>
-                    <div class="agenda-speakers">
-                        <div class="agenda-speaker">
-                            <div class="agenda-speaker-avatar">
-                                <img src="https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/4e4653cc37d949ab9c7de47c78da81fb.jpg" alt="Martha Roherty">
-                            </div>
-                            <div class="agenda-speaker-info">
-                                <div class="agenda-speaker-name">Martha Roherty</div>
-                                <div class="agenda-speaker-role">Executive Director, ADvancing States</div>
-                            </div>
-                        </div>
-                        <div class="agenda-speaker">
-                            <div class="agenda-speaker-avatar">
-                                <img src="https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/0a5c6ef4ef3947e1a2d7a2992d43fdcc.jpg" alt="Ursel McElroy">
-                            </div>
-                            <div class="agenda-speaker-info">
-                                <div class="agenda-speaker-name">Ursel McElroy</div>
-                                <div class="agenda-speaker-role">Director, Ohio Dept. of Aging & Board President</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="header-box">
+                <h1 style="font-size: 3rem; color: var(--dark-blue); margin: 0; line-height: 1; text-transform: uppercase;">Agenda<br>at a Glance</h1>
+                <p style="font-size: 1.1rem; color: var(--dark-green); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin-top: 10px;">Minneapolis, MN • 2026</p>
+                <div style="margin-top: 20px; color: #999; font-weight: 600;">↓ Scroll to Begin</div>
             </div>
         </div>
 
-        <div class="agenda-day-divider">Day 2 — Tuesday, April 28</div>
-
-        <div class="agenda-item">
-            <div class="agenda-time">
-                <div class="agenda-time-value">9:00</div>
-                <div class="agenda-time-period">AM</div>
-            </div>
-            <div class="agenda-marker">
-                <div class="agenda-dot"></div>
-                <div class="agenda-line"></div>
-            </div>
+        <div class="agenda-item left">
             <div class="agenda-card">
-                <div class="agenda-card-header">
-                    <div class="agenda-card-content">
-                        <h3 class="agenda-card-title">Policy Update</h3>
-                        <div class="agenda-card-tags">
-                            <span class="agenda-tag agenda-tag-location">Location TBD</span>
-                            <span class="agenda-tag agenda-tag-breakout">Session</span>
-                        </div>
-                    </div>
-                    <div class="agenda-speakers">
-                        <div class="agenda-speaker">
-                            <div class="agenda-speaker-avatar">
-                                <img src="https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/9c9139b17ba34ac4932504eba2c7a8e4.jpg" alt="Abby Cox">
-                            </div>
-                            <div class="agenda-speaker-info">
-                                <div class="agenda-speaker-name">Abby Cox</div>
-                                <div class="agenda-speaker-role">Senior Director of Aging Policy, ADvancing States</div>
-                            </div>
-                        </div>
-                        <div class="agenda-speaker">
-                            <div class="agenda-speaker-avatar">
-                                <img src="https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/f03606f0e2844b8e81497b12ac425fa4.jpg" alt="Rachel Neely">
-                            </div>
-                            <div class="agenda-speaker-info">
-                                <div class="agenda-speaker-name">Rachel Neely</div>
-                                <div class="agenda-speaker-role">Senior Director of Medicaid Policy, ADvancing States</div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="day-marker">Day 1 • Monday</div>
+                <div class="time-display">12:15 <span>PM</span> <div class="tag tag-green">Opening</div></div>
+                <h3 class="card-title">Opening Welcome & Introduction</h3>
+                <div class="speaker-row">
+                    <img src="https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/4e4653cc37d949ab9c7de47c78da81fb.jpg" class="speaker-img">
+                    <div class="speaker-info"><h4>Martha Roherty</h4><p>Executive Director</p></div>
                 </div>
+            </div>
+            <div class="agenda-graphic">
+                <svg viewBox="0 0 200 200" class="graphic-svg">
+                    <circle class="graphic-circle-1" cx="100" cy="100" r="80" fill="none" stroke="var(--light-green)" stroke-width="3"/>
+                    <circle class="graphic-circle-2" cx="100" cy="100" r="60" fill="none" stroke="var(--dark-blue)" stroke-width="2"/>
+                    <circle class="graphic-circle-3" cx="100" cy="100" r="40" fill="none" stroke="var(--light-blue)" stroke-width="2"/>
+                    <path class="graphic-star" d="M100,20 L108,80 L160,100 L108,120 L100,180 L92,120 L40,100 L92,80 Z" fill="var(--light-green)" opacity="0.3"/>
+                </svg>
             </div>
         </div>
 
-        <div class="agenda-item agenda-noline">
-            <div class="agenda-time">
-                <div class="agenda-time-value">10:30</div>
-                <div class="agenda-time-period">AM</div>
-            </div>
-            <div class="agenda-marker">
-                <div class="agenda-dot"></div>
-                <div class="agenda-line"></div>
-            </div>
+        <div class="agenda-item left">
             <div class="agenda-card">
-                <div class="agenda-card-header">
-                    <div class="agenda-card-content">
-                        <h3 class="agenda-card-title">Aging, Caregiving, and Disabilities Hot Topics</h3>
-                        <div class="agenda-card-tags">
-                            <span class="agenda-tag agenda-tag-location">Location TBD</span>
-                            <span class="agenda-tag agenda-tag-discussion">Panel</span>
-                        </div>
-                    </div>
-                    <div class="agenda-speakers">
-                        <div class="agenda-speaker">
-                            <div class="agenda-speaker-avatar">
-                                <img src="https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/aca7a6c9ff9f48f7b0107218632e89bd.jpg" alt="April Young">
-                            </div>
-                            <div class="agenda-speaker-info">
-                                <div class="agenda-speaker-name">April Young</div>
-                                <div class="agenda-speaker-role">Sr. Managing Director - Strategic Initiatives, ADvancing States</div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="day-marker">Day 2 • Tuesday</div>
+                <div class="time-display">9:00 <span>AM</span> <div class="tag tag-blue">Session</div></div>
+                <h3 class="card-title">Policy Update</h3>
+                <div class="speaker-row">
+                    <img src="https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/9c9139b17ba34ac4932504eba2c7a8e4.jpg" class="speaker-img">
+                    <div class="speaker-info"><h4>Abby Cox</h4><p>Senior Director of Aging Policy</p></div>
                 </div>
             </div>
+            <div class="agenda-graphic">
+                <svg viewBox="0 0 200 200" class="graphic-svg">
+                    <rect class="graphic-rect-1" x="40" y="40" width="120" height="120" rx="10" fill="none" stroke="var(--dark-blue)" stroke-width="3" transform="rotate(15 100 100)"/>
+                    <rect class="graphic-rect-2" x="55" y="55" width="90" height="90" rx="8" fill="none" stroke="var(--light-blue)" stroke-width="2" transform="rotate(-10 100 100)"/>
+                    <rect class="graphic-rect-3" x="70" y="70" width="60" height="60" rx="6" fill="var(--light-green)" opacity="0.2" transform="rotate(5 100 100)"/>
+                    <line class="graphic-line-1" x1="30" y1="170" x2="170" y2="170" stroke="var(--dark-green)" stroke-width="4" stroke-linecap="round"/>
+                    <line class="graphic-line-2" x1="50" y1="155" x2="130" y2="155" stroke="var(--light-blue)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
         </div>
+
+        <div class="agenda-item left">
+            <div class="agenda-card">
+                <div class="day-marker">Day 2 • Tuesday</div>
+                <div class="time-display">10:30 <span>AM</span> <div class="tag tag-blue">Panel</div></div>
+                <h3 class="card-title">Aging, Caregiving, and Disabilities Hot Topics</h3>
+                <div class="speaker-row">
+                    <img src="https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/aca7a6c9ff9f48f7b0107218632e89bd.jpg" class="speaker-img">
+                    <div class="speaker-info"><h4>April Young</h4><p>Sr. Managing Director</p></div>
+                </div>
+            </div>
+            <div class="agenda-graphic">
+                <svg viewBox="0 0 200 200" class="graphic-svg">
+                    <circle class="graphic-dot-1" cx="60" cy="80" r="25" fill="var(--dark-blue)" opacity="0.8"/>
+                    <circle class="graphic-dot-2" cx="140" cy="80" r="25" fill="var(--light-blue)" opacity="0.8"/>
+                    <circle class="graphic-dot-3" cx="100" cy="140" r="25" fill="var(--light-green)" opacity="0.8"/>
+                    <line class="graphic-connect-1" x1="60" y1="80" x2="140" y2="80" stroke="var(--dark-green)" stroke-width="2" stroke-dasharray="5,5"/>
+                    <line class="graphic-connect-2" x1="60" y1="80" x2="100" y2="140" stroke="var(--dark-green)" stroke-width="2" stroke-dasharray="5,5"/>
+                    <line class="graphic-connect-3" x1="140" y1="80" x2="100" y2="140" stroke="var(--dark-green)" stroke-width="2" stroke-dasharray="5,5"/>
+                </svg>
+            </div>
+        </div>
+
     </div>
 </div>
+
+<script>
+    const track = document.getElementById('agendaScrollTrack');
+    const items = document.querySelectorAll('.agenda-item');
+    let currentIndex = 0;
+    let isScrolling = false;
+
+    function centerCard(index) {
+        if (index < 0 || index >= items.length) return;
+        currentIndex = index;
+        const target = items[index];
+
+        items.forEach(el => el.classList.remove('is-focused'));
+        target.classList.add('is-focused');
+
+        const containerCenter = track.clientHeight / 2;
+        const cardCenter = target.offsetTop + (target.clientHeight / 2);
+        const scrollPos = cardCenter - containerCenter;
+
+        track.scrollTo({ top: scrollPos, behavior: 'smooth' });
+    }
+
+    track.addEventListener('wheel', (e) => {
+        if (window.innerWidth > 900) {
+            const direction = e.deltaY > 0 ? 1 : -1;
+            const nextIndex = currentIndex + direction;
+
+            if (nextIndex < 0 || nextIndex >= items.length) {
+                window.scrollBy({ top: e.deltaY, behavior: 'auto' });
+                return; 
+            }
+
+            e.preventDefault();
+            if (isScrolling) return;
+
+            isScrolling = true;
+            centerCard(nextIndex);
+            setTimeout(() => { isScrolling = false; }, 500);
+        }
+    }, { passive: false });
+
+    items.forEach((item, i) => {
+        item.addEventListener('click', () => centerCard(i));
+    });
+
+    setTimeout(() => centerCard(0), 100);
+</script>
+
+</body>
+</html>
