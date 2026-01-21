@@ -1,159 +1,523 @@
 <style>
 :root {
-    --tri-bg: #006273;
-    --tri-dark-panel: #152a30;
-    --tri-accent: #58b0e2;
-    --tri-text: #ffffff;
-    --tri-text-muted: rgba(255, 255, 255, 0.8);
-    --footer-bg: #006273;
-    --footer-bg-dark: #004a57;
+    --footer-primary: #006273;
+    --footer-dark: #004a57;
     --footer-accent: #318332;
+    --footer-light-green: #b9d989;
     --footer-text: #ffffff;
-    --footer-text-muted: rgba(255, 255, 255, 0.8);
+    --footer-text-muted: rgba(255, 255, 255, 0.75);
 }
 
-.split-container { display: flex; flex-wrap: wrap; width: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: var(--tri-text); overflow: hidden; position: relative; }
-.crossing-divider { position: absolute; left: 0; width: 100%; height: 1px; background: rgba(255,255,255,0.15); z-index: 10; bottom: 0px; }
-.split-left { flex: 3; background-color: var(--tri-bg); padding: 80px 60px; display: flex; flex-direction: column; justify-content: space-between; min-width: 350px; box-sizing: border-box; position: relative; z-index: 1; }
-.split-content-top { margin-bottom: 50px; max-width: 650px; }
-.split-title { font-size: 42px; font-weight: 800; line-height: 1.1; margin: 0 0 20px 0; }
-.split-desc { font-size: 18px; line-height: 1.6; color: var(--tri-text-muted); margin: 0 0 30px 0; max-width: 500px; }
-.split-socials { display: flex; gap: 15px; }
-.social-btn { width: 44px; height: 44px; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; color: white; text-decoration: none; }
-.social-btn:hover { background: var(--tri-text); color: var(--tri-bg); border-color: var(--tri-text); transform: translateY(-2px); }
-.social-btn svg { width: 20px; height: 20px; fill: currentColor; }
-.split-image-wrapper { width: 100%; max-width: 700px; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.25); position: relative; aspect-ratio: 16/9; }
-.split-image { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
-.split-image-wrapper:hover .split-image { transform: scale(1.03); }
-.split-right { flex: 2; background-color: var(--tri-dark-panel); padding: 80px 50px; display: flex; flex-direction: column; justify-content: center; position: relative; min-width: 300px; box-sizing: border-box; z-index: 1; }
-.split-right-content { position: relative; z-index: 2; max-width: 450px; }
-.tag-kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--tri-accent); margin-bottom: 20px; display: block; }
-.newsletter-title { font-size: 48px; font-family: serif; font-style: italic; margin: 0 0 20px 0; line-height: 1.1; }
-.newsletter-desc { font-size: 16px; color: var(--tri-text-muted); line-height: 1.6; margin-bottom: 50px; }
-.btn-subscribe { display: inline-flex; align-items: center; gap: 10px; color: var(--tri-text); text-decoration: none; font-weight: 600; font-size: 16px; border-bottom: 2px solid var(--tri-accent); padding-bottom: 5px; transition: all 0.3s ease; }
-.btn-subscribe:hover { color: var(--tri-accent); gap: 15px; }
-.circle-deco { position: absolute; bottom: -100px; right: -100px; width: 300px; height: 300px; border: 1px solid rgba(255,255,255,0.05); border-radius: 50%; z-index: 1; pointer-events: none; }
-.circle-deco::before { content: ''; position: absolute; inset: 40px; border: 1px solid rgba(255,255,255,0.05); border-radius: 50%; }
-.footer-wrapper { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(180deg, var(--footer-bg) 0%, var(--footer-bg-dark) 100%); color: var(--footer-text); width: 100%; position: relative; border-top: none; }
-.footer-container { max-width: 1400px; margin: 0 auto; padding: 80px 5%; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; }
-.footer-brand { display: flex; flex-direction: column; gap: 25px; }
-.footer-logo img { height: 90px; width: auto; margin-bottom: 10px; }
-.footer-tagline { font-size: 18px; line-height: 1.6; color: var(--footer-text-muted); font-style: italic; max-width: 400px; }
-.footer-socials { display: flex; gap: 18px; margin-top: 15px; }
-.social-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background-color: rgba(255,255,255,0.1); border-radius: 50%; transition: all 0.3s ease; color: #fff; text-decoration: none; }
-.social-icon:hover { background-color: var(--footer-accent); transform: translateY(-3px); }
-.social-icon svg { width: 24px; height: 24px; fill: currentColor; }
-.footer-column h3 { font-size: 20px; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; color: var(--footer-text); margin: 0 0 30px 0; opacity: 0.9; }
-.footer-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 20px; }
-.footer-link-item { display: flex; align-items: center; gap: 15px; color: var(--footer-text-muted); text-decoration: none; font-size: 17px; font-weight: 500; transition: all 0.2s ease; }
-.footer-link-item:hover { color: #ffffff; transform: translateX(5px); }
-.footer-link-item svg { width: 22px; height: 22px; stroke: var(--footer-accent); stroke-width: 2.5; flex-shrink: 0; }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.15); padding: 30px 5%; text-align: center; font-size: 14px; color: var(--footer-text-muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-.footer-bottom a { color: var(--footer-text-muted); text-decoration: none; font-weight: 500; }
-.footer-bottom a:hover { text-decoration: underline; color: white; }
-@media (max-width: 968px) { .crossing-divider { display: none; } .split-container { flex-direction: column; } .split-left, .split-right { padding: 60px 30px; width: 100%; } .split-title { font-size: 32px; } .newsletter-title { font-size: 36px; } .newsletter-desc { margin-bottom: 30px; } .footer-container { grid-template-columns: 1fr; text-align: center; gap: 50px; padding: 60px 5%; } .footer-brand { align-items: center; } .footer-tagline { margin: 0 auto; font-size: 16px; } .footer-socials { justify-content: center; } .footer-links { align-items: center; } .footer-bottom { flex-direction: column; justify-content: center; } }
+/* ================================================
+   NEWSLETTER SECTION (Above Footer)
+   ================================================ */
+.newsletter-section {
+    background: linear-gradient(135deg, var(--footer-primary) 0%, var(--footer-dark) 100%);
+    width: 100%;
+    padding: 80px 5%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(30deg, rgba(255,255,255,0.03) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.03) 87.5%, rgba(255,255,255,0.03)),
+        linear-gradient(150deg, rgba(255,255,255,0.03) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.03) 87.5%, rgba(255,255,255,0.03));
+    background-size: 80px 140px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.newsletter-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Left Side - Newsletter Info */
+.newsletter-content {
+    color: var(--footer-text);
+}
+
+.newsletter-kicker {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 800;
+    color: var(--footer-light-green);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.newsletter-title {
+    font-size: 56px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    margin: 0 0 24px 0;
+    line-height: 1.1;
+    color: var(--footer-text);
+}
+
+.newsletter-description {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--footer-text-muted);
+    margin-bottom: 40px;
+    max-width: 500px;
+}
+
+.newsletter-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--footer-light-green);
+    color: #000000;
+    text-decoration: none;
+    padding: 18px 36px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 17px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.newsletter-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    gap: 18px;
+}
+
+.newsletter-cta svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3;
+}
+
+/* Right Side - Image */
+.newsletter-image-wrapper {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    position: relative;
+    aspect-ratio: 16/10;
+}
+
+.newsletter-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.newsletter-image-wrapper:hover .newsletter-image {
+    transform: scale(1.05);
+}
+
+/* ================================================
+   MAIN FOOTER
+   ================================================ */
+.footer-main {
+    background: #152a30;
+    width: 100%;
+    padding: 60px 5% 0 5%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--footer-text);
+}
+
+.footer-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 60px;
+}
+
+/* Brand Column */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.footer-logo img {
+    height: 80px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+.footer-tagline {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--footer-text-muted);
+    max-width: 350px;
+}
+
+.footer-social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.social-link {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px;
+    color: var(--footer-text);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.social-link:hover {
+    background: var(--footer-accent);
+    transform: translateY(-3px);
+    border-color: var(--footer-accent);
+}
+
+.social-link svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+/* Footer Columns */
+.footer-column h3 {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin: 0 0 24px 0;
+    color: var(--footer-text);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.footer-links a {
+    color: var(--footer-text-muted);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: var(--footer-text);
+    transform: translateX(4px);
+}
+
+/* Contact Info with Icons */
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.contact-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.contact-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--footer-accent);
+    stroke-width: 2;
+}
+
+.contact-text {
+    color: var(--footer-text-muted);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.contact-text a {
+    color: var(--footer-text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-text a:hover {
+    color: var(--footer-text);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 30px 0;
+    margin-top: 0;
+}
+
+.footer-bottom-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 14px;
+    color: var(--footer-text-muted);
+}
+
+.footer-legal-links {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-legal-links a {
+    color: var(--footer-text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.footer-legal-links a:hover {
+    color: var(--footer-text);
+}
+
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+@media (max-width: 968px) {
+    .newsletter-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: center;
+    }
+
+    .newsletter-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .newsletter-title {
+        font-size: 42px;
+    }
+
+    .newsletter-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 50px;
+    }
+
+    .footer-brand {
+        align-items: center;
+    }
+
+    .footer-tagline {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-social-links {
+        justify-content: center;
+    }
+
+    .footer-column h3 {
+        margin-bottom: 20px;
+    }
+
+    .footer-links a:hover {
+        transform: none;
+    }
+
+    .contact-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-legal-links {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .newsletter-section {
+        padding: 60px 5%;
+    }
+
+    .newsletter-title {
+        font-size: 36px;
+    }
+
+    .newsletter-description {
+        font-size: 16px;
+    }
+
+    .footer-main {
+        padding: 50px 5% 0 5%;
+    }
+}
 </style>
 
-<div class="split-container">
-    <div class="split-left">
-        <div class="split-content-top">
-            <h2 class="split-title">We look forward to seeing you in Minneapolis!</h2>
-            <p class="split-desc">
-                If you have questions leading up to the event, reach out to our team via email or social media.
-            </p>
-
-            <div class="split-socials">
-                <a href="#" class="social-btn" aria-label="LinkedIn">
-                    <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                </a>
-                <a href="mailto:info@advancingstates.org" class="social-btn" aria-label="Email">
-                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                </a>
-            </div>
-        </div>
-
-        <div class="split-image-wrapper">
-            <img src="https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/4e4653cc37d949ab9c7de47c78da81fb.jpg" class="split-image" alt="Conference Highlight">
-        </div>
-    </div>
-
-    <div class="split-right">
-        <div class="circle-deco"></div>
-        <div class="split-right-content">
-            <span class="tag-kicker">Weekly Newsletter</span>
+<!-- Newsletter Section -->
+<div class="newsletter-section">
+    <div class="newsletter-container">
+        <div class="newsletter-content">
+            <span class="newsletter-kicker">Stay Connected</span>
             <h2 class="newsletter-title">The Friday Update</h2>
-            <p class="newsletter-desc">
-                Get the latest news on HCBS, Medicaid policy, and state leadership delivered directly to your device.
+            <p class="newsletter-description">
+                Get the latest news on HCBS, Medicaid policy, and state leadership delivered directly to your inbox every week.
             </p>
-
-            <a href="https://www.advancingstates.org/newsletter-signup" target="_blank" class="btn-subscribe">
-                Join Today <span>→</span>
+            <a href="https://www.advancingstates.org/newsletter-signup" target="_blank" class="newsletter-cta">
+                Subscribe Now
+                <svg viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
             </a>
         </div>
-    </div>
 
-    <div class="crossing-divider"></div>
+        <div class="newsletter-image-wrapper">
+            <img src="https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/4e4653cc37d949ab9c7de47c78da81fb.jpg" class="newsletter-image" alt="Conference Networking">
+        </div>
+    </div>
 </div>
 
-<footer class="footer-wrapper">
-    <div class="footer-container">
+<!-- Main Footer -->
+<footer class="footer-main">
+    <div class="footer-grid">
+        <!-- Brand Column -->
         <div class="footer-brand">
             <div class="footer-logo">
                 <img src="https://custom.cvent.com/4DC85802658B432AB1FD735BC8F5B457/pix/b800eabb1d584306ad9faf23c3571ea2.png" alt="ADvancing States">
             </div>
             <p class="footer-tagline">
-                Leadership, Innovation, and Collaboration for State Aging and Disability Agencies.
+                Strengthening state leadership, advancing innovation, and transforming long-term services and supports for older adults and individuals with disabilities.
             </p>
-
-            <div class="footer-socials">
-                <a href="#" class="social-icon" aria-label="LinkedIn">
-                    <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            <div class="footer-social-links">
+                <a href="https://www.linkedin.com/company/advancingstates/" target="_blank" class="social-link" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
                 </a>
-                <a href="#" class="social-icon" aria-label="Website">
-                    <svg viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 18.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zm1.75-5.75c-.23.44-.55.82-.94 1.11-.29.21-.49.52-.55.87-.07.41-.42.72-.85.72h-.03c-.5 0-.88-.45-.82-.94.08-.62.43-1.16.92-1.52.32-.24.58-.56.74-.92.27-.6.04-1.3-.53-1.59-.57-.29-1.25-.08-1.56.46l-.02.04c-.26.46-.86.6-1.31.32-.45-.27-.58-.85-.31-1.29.69-1.16 2.19-1.63 3.42-1.02 1.22.61 1.78 2.08 1.24 3.36z"/></svg>
+                <a href="mailto:info@advancingstates.org" class="social-link" aria-label="Email">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+                <a href="https://www.advancingstates.org" target="_blank" class="social-link" aria-label="Website">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
                 </a>
             </div>
         </div>
 
+        <!-- Quick Links -->
         <div class="footer-column">
-            <h3>Quick Links</h3>
+            <h3>Explore</h3>
             <ul class="footer-links">
-                <li><a href="#hero" class="footer-link-item">Home</a></li>
-                <li><a href="#venue-section" class="footer-link-item">Venue Details</a></li>
-                <li><a href="#agenda" class="footer-link-item">Agenda at a Glance</a></li>
-                <li><a href="#faq" class="footer-link-item">Frequently Asked Questions</a></li>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#venue-section">Venue</a></li>
+                <li><a href="#agenda">Agenda</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="https://www.advancingstates.org/register" target="_blank">Register</a></li>
             </ul>
         </div>
 
+        <!-- Resources -->
         <div class="footer-column">
-            <h3>Get in Touch</h3>
+            <h3>Resources</h3>
             <ul class="footer-links">
-                <li>
-                    <a href="mailto:info@advancingstates.org" class="footer-link-item">
-                        <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                        info@advancingstates.org
-                    </a>
-                </li>
-                <li>
-                    <a href="tel:2028982578" class="footer-link-item">
-                        <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                        (202) 898-2578
-                    </a>
-                </li>
-                <li>
-                    <a href="https://maps.google.com/?q=Minneapolis+Marriott+City+Center" target="_blank" class="footer-link-item">
-                        <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                        Minneapolis, MN
-                    </a>
-                </li>
+                <li><a href="https://www.advancingstates.org" target="_blank">ADvancing States</a></li>
+                <li><a href="https://www.advancingstates.org/about" target="_blank">About Us</a></li>
+                <li><a href="https://www.advancingstates.org/newsletter-signup" target="_blank">Newsletter</a></li>
+                <li><a href="https://www.advancingstates.org/policy" target="_blank">Policy Updates</a></li>
+                <li><a href="https://www.advancingstates.org/events" target="_blank">Events</a></li>
             </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-column">
+            <h3>Contact</h3>
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <div class="contact-text">
+                    <a href="mailto:info@advancingstates.org">info@advancingstates.org</a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                </div>
+                <div class="contact-text">
+                    <a href="tel:2028982578">(202) 898-2578</a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                </div>
+                <div class="contact-text">
+                    Minneapolis Marriott<br>City Center
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Footer Bottom -->
     <div class="footer-bottom">
-        <div>&copy; 2026 ADvancing States. All rights reserved.</div>
-        <div>
-            <a href="#">Privacy Policy</a>  |  <a href="#">Terms of Use</a>
+        <div class="footer-bottom-content">
+            <div>&copy; 2026 ADvancing States. All rights reserved.</div>
+            <div class="footer-legal-links">
+                <a href="https://www.advancingstates.org/privacy" target="_blank">Privacy Policy</a>
+                <a href="https://www.advancingstates.org/terms" target="_blank">Terms of Use</a>
+                <a href="https://www.advancingstates.org/accessibility" target="_blank">Accessibility</a>
+            </div>
         </div>
     </div>
 </footer>
