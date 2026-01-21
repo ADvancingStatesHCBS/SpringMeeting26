@@ -1,7 +1,30 @@
-<!-- =============================================
-     FAQ SECTION
-     ============================================= -->
-<div id="faq"></div>
+<div id="faq" style="position: absolute; margin-top: -90px;"></div>
+
+<style>
+:root { --faq-sidebar-bg: #006273; --faq-tan-bg: #ffffff; --faq-active-bg: #ffffff; --faq-active-text: #006273; --faq-text-muted: rgba(255,255,255,0.7); --faq-card-bg: #ffffff; --faq-accent-green: #318332; --faq-text-dark: #404041; --faq-border-color: #cbd5e1; }
+.full-width-section { padding: 0 !important; margin: 0 !important; max-width: 100% !important; width: 100% !important; }
+.faq-wrapper { display: grid; grid-template-columns: 350px 1fr; width: 100%; height: 700px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: var(--faq-tan-bg); overflow: hidden; }
+.faq-sidebar { padding: 80px 40px; background-color: var(--faq-sidebar-bg); color: white; display: flex; flex-direction: column; z-index: 20; }
+.faq-header h1 { font-size: 48px; font-weight: 800; margin: 0 0 15px 0; color: white; line-height: 1; letter-spacing: -1px; }
+.faq-header p { font-size: 15px; color: var(--faq-text-muted); line-height: 1.6; margin-bottom: 45px; }
+.category-menu { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.category-btn { width: 100%; text-align: left; padding: 18px 25px; font-size: 15px; font-weight: 600; border: none; border-radius: 50px; background: transparent; color: var(--faq-text-muted); cursor: pointer; transition: all 0.3s ease; display: flex; justify-content: space-between; align-items: center; }
+.category-btn:hover { background: rgba(255,255,255,0.1); color: white; padding-left: 30px; }
+.category-btn.active { background: var(--faq-active-bg); color: var(--faq-active-text); box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-weight: 800; }
+.arrow svg { width: 18px; height: 18px; fill: currentColor; }
+.faq-content-area { position: relative; height: 100%; background-color: var(--faq-tan-bg); overflow: hidden; }
+.cards-wrapper { padding: 0; position: relative; height: 100%; display: flex; flex-direction: column; align-items: center; padding-top: 50vh; padding-bottom: 50vh; box-sizing: border-box; }
+.faq-card { background: var(--faq-card-bg); border-radius: 16px; padding: 40px; margin-bottom: 60px; width: 100%; max-width: 800px; position: relative; border: 2px solid var(--faq-border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.05); opacity: 0.4; filter: blur(2px); transform: scale(0.95); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); cursor: pointer; pointer-events: none; }
+.faq-card.is-focused { opacity: 1; filter: blur(0); transform: scale(1); border-color: var(--faq-sidebar-bg); box-shadow: 0 20px 60px rgba(0, 98, 115, 0.15); pointer-events: auto; cursor: default; }
+.faq-card::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background-color: transparent; transition: background-color 0.3s ease; border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
+.faq-card.is-focused::before { background-color: var(--faq-accent-green); }
+.faq-card h3 { color: var(--faq-sidebar-bg); font-size: 22px; font-weight: 800; margin: 0 0 15px 0; }
+.faq-card div { color: var(--faq-text-dark); font-size: 16px; line-height: 1.7; }
+.faq-card a { color: var(--faq-accent-green); font-weight: 700; text-decoration: none; }
+.category-indicator { position: absolute; top: 30px; left: 60px; z-index: 50; font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--faq-accent-green); letter-spacing: 1.5px; background: white; padding: 10px 20px; border-radius: 20px; border: 1px solid var(--faq-border-color); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+@media (max-width: 900px) { .faq-wrapper { grid-template-columns: 1fr; height: auto; overflow: auto; } .faq-sidebar { padding: 60px 5%; } .faq-content-area { height: auto; overflow: visible; } .cards-wrapper { padding: 40px 5%; height: auto; display: block; } .faq-card { opacity: 1; filter: blur(0); transform: none; margin-bottom: 20px; pointer-events: auto; } .category-indicator { position: relative; top: 0; left: 0; margin-bottom: 20px; display: inline-block; } }
+</style>
+
 <div class="faq-wrapper">
     <aside class="faq-sidebar">
         <div class="faq-header">
@@ -15,9 +38,23 @@
             <li><button class="category-btn" data-target="travel">Travel <span class="arrow"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span></button></li>
         </ul>
     </aside>
-
     <main class="faq-content-area" id="scrollContainer">
         <div id="categoryTitle" class="category-indicator">General Questions</div>
         <div class="cards-wrapper" id="cardContainer"></div>
     </main>
 </div>
+
+<script>
+const faqData = { general: [ { q: "What is the Spring Membership Meeting?", a: "The Spring Meeting is an opportunity for you to engage with state aging and disabilities directors, Medicaid LTSS directors, and federal officials to share promising practices." }, { q: "Who should attend and why?", a: "ADvancing States members and partnering sponsors are encouraged to attend. Your participation is invaluable to help other states develop their work." }, { q: "Are meals included?", a: "Yes! Breakfast and lunch are provided at the hotel on Tuesday and Wednesday. Monday features lunch at the venue." }, { q: "What is the dress code?", a: "We suggest business casual attire for all conference events." } ], registration: [ { q: "How do I pay?", a: "We accept credit cards (5% fee), checks, and purchase orders for government attendees." }, { q: "Cancellation Policy", a: "Cancellations must be in writing by April 1st for a refund minus $50 processing fee." } ], health: [ { q: "Health Protocols", a: "We ask attendees to monitor health and avoid participation if symptomatic." } ], travel: [ { q: "Venue Location", a: "Minneapolis Marriott City Center, 30 South 7th Street, Minneapolis, MN." }, { q: "Airport", a: "Minneapolis–Saint Paul International Airport (MSP) is 20 mins away." }, { q: "Hotel Booking", a: "Room block links will be emailed to registered attendees." } ] };
+const categoryLabels = { general: 'General Questions', registration: 'Registration', health: 'Health & Safety', travel: 'Travel' };
+const container = document.getElementById('cardContainer');
+const scrollContainer = document.getElementById('scrollContainer');
+const titleIndicator = document.getElementById('categoryTitle');
+const btns = document.querySelectorAll('.category-btn');
+let currentCardIndex = 0; let isScrolling = false; let cardElements = [];
+function render(category) { titleIndicator.textContent = categoryLabels[category]; container.innerHTML = ''; currentCardIndex = 0; faqData[category].forEach((item, i) => { const card = document.createElement('div'); card.className = `faq-card ${i===0?'is-focused':''}`; card.onclick = function() { forceScrollTo(i); }; card.innerHTML = `<h3>${item.q}</h3><div>${item.a}</div>`; container.appendChild(card); }); cardElements = document.querySelectorAll('.faq-card'); if(scrollContainer) scrollContainer.scrollTop = 0; setTimeout(() => forceScrollTo(0), 50); }
+function forceScrollTo(index) { if (index < 0 || index >= cardElements.length) return; currentCardIndex = index; const targetCard = cardElements[index]; cardElements.forEach(c => c.classList.remove('is-focused')); targetCard.classList.add('is-focused'); const containerCenter = scrollContainer.clientHeight / 2; const cardCenter = targetCard.offsetTop + (targetCard.clientHeight / 2); const scrollPos = cardCenter - containerCenter; scrollContainer.scrollTo({ top: scrollPos, behavior: 'smooth' }); }
+scrollContainer.addEventListener('wheel', (e) => { e.preventDefault(); if (isScrolling) return; const direction = e.deltaY > 0 ? 1 : -1; const nextIndex = currentCardIndex + direction; if (nextIndex >= 0 && nextIndex < cardElements.length) { isScrolling = true; forceScrollTo(nextIndex); setTimeout(() => { isScrolling = false; }, 600); } }, { passive: false });
+btns.forEach(btn => { btn.addEventListener('click', () => { btns.forEach(b => b.classList.remove('active')); btn.classList.add('active'); render(btn.dataset.target); }); });
+render('general');
+</script>

@@ -1,7 +1,59 @@
-<!-- =============================================
-     AGENDA SECTION
-     ============================================= -->
-<div id="agenda"></div>
+<div id="agenda" style="position: absolute; margin-top: -90px;"></div>
+
+<style>
+.agenda-wrapper {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #ffffff;
+    padding: 50px 6% 30px 6%;
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.agenda-header { margin-bottom: 30px; }
+.agenda-title { font-size: 42px; font-weight: bold; color: #006273; margin: 0 0 8px 0; }
+.agenda-subtitle { font-size: 18px; color: #8ac65a; font-weight: 600; letter-spacing: 1px; }
+.agenda-day-divider { font-size: 16px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #006273; margin: 30px 0 20px 110px; padding-bottom: 8px; border-bottom: 2px solid #006273; max-width: 300px; }
+.agenda-timeline { position: relative; max-width: 100%; }
+.agenda-item { display: flex; gap: 25px; margin-bottom: 20px; align-items: flex-start; }
+.agenda-time { flex: 0 0 80px; text-align: right; padding-top: 18px; }
+.agenda-time-value { font-size: 36px; font-weight: bold; color: #006273; line-height: 1; }
+.agenda-time-period { font-size: 14px; color: #3a8297; text-transform: uppercase; letter-spacing: 1px; }
+.agenda-marker { flex: 0 0 20px; display: flex; flex-direction: column; align-items: center; padding-top: 22px; }
+.agenda-dot { width: 14px; height: 14px; background-color: #8ac65a; transform: rotate(45deg); }
+.agenda-line { width: 2px; flex: 1; background-color: #d4d4d4; min-height: 60px; }
+.agenda-card { flex: 1; background-color: #ffffff; border-radius: 10px; padding: 20px 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.agenda-card-header { display: flex; justify-content: space-between; align-items: center; gap: 30px; }
+.agenda-card-content { flex: 1; }
+.agenda-card-title { font-size: 24px; font-weight: 600; color: #333; margin: 0 0 10px 0; }
+.agenda-card-tags { display: flex; gap: 8px; }
+.agenda-tag { font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 5px 12px; border-radius: 4px; }
+.agenda-tag-location { background-color: #f0f0f0; color: #666; }
+.agenda-tag-type { background-color: #318332; color: #fff; }
+.agenda-tag-breakout { background-color: #006273; color: #fff; }
+.agenda-tag-discussion { background-color: #3a8297; color: #fff; }
+.agenda-speakers { display: flex; flex-direction: row; gap: 30px; flex-shrink: 0; }
+.agenda-speaker { display: flex; align-items: center; gap: 12px; }
+.agenda-speaker-avatar { width: 55px; height: 55px; background-color: #d4d4d4; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+.agenda-speaker-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.agenda-speaker-info { text-align: left; }
+.agenda-speaker-name { font-size: 18px; font-weight: 600; color: #333; line-height: 1.3; }
+.agenda-speaker-role { font-size: 14px; color: #888; line-height: 1.3; max-width: 220px; }
+.agenda-noline .agenda-line { display: none; }
+.agenda-noline { margin-bottom: 0; }
+
+@media (max-width: 1000px) { .agenda-speakers { flex-direction: column; gap: 12px; } }
+@media (max-width: 768px) {
+    .agenda-item { gap: 15px; }
+    .agenda-time { flex: 0 0 55px; }
+    .agenda-time-value { font-size: 26px; }
+    .agenda-card { padding: 18px; }
+    .agenda-card-header { flex-direction: column; align-items: flex-start; }
+    .agenda-speakers { flex-direction: row; flex-wrap: wrap; margin-top: 12px; }
+    .agenda-day-divider { margin-left: 70px; }
+}
+</style>
+
 <div class="agenda-wrapper">
     <div class="agenda-header">
         <h2 class="agenda-title">Agenda at a Glance</h2>
@@ -9,7 +61,6 @@
     </div>
 
     <div class="agenda-timeline">
-        <!-- Day 1 -->
         <div class="agenda-day-divider">Day 1 — Monday, April 27</div>
 
         <div class="agenda-item">
@@ -54,7 +105,6 @@
             </div>
         </div>
 
-        <!-- Day 2 -->
         <div class="agenda-day-divider">Day 2 — Tuesday, April 28</div>
 
         <div class="agenda-item">
