@@ -1,60 +1,358 @@
 <div id="faq" style="position: absolute; margin-top: -90px;"></div>
 
 <style>
-:root { --faq-sidebar-bg: #006273; --faq-tan-bg: #ffffff; --faq-active-bg: #ffffff; --faq-active-text: #006273; --faq-text-muted: rgba(255,255,255,0.7); --faq-card-bg: #ffffff; --faq-accent-green: #318332; --faq-text-dark: #404041; --faq-border-color: #cbd5e1; }
-.full-width-section { padding: 0 !important; margin: 0 !important; max-width: 100% !important; width: 100% !important; }
-.faq-wrapper { display: grid; grid-template-columns: 350px 1fr; width: 100%; height: 700px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: var(--faq-tan-bg); overflow: hidden; }
-.faq-sidebar { padding: 80px 40px; background-color: var(--faq-sidebar-bg); color: white; display: flex; flex-direction: column; z-index: 20; }
-.faq-header h1 { font-size: 48px; font-weight: 800; margin: 0 0 15px 0; color: white; line-height: 1; letter-spacing: -1px; }
-.faq-header p { font-size: 15px; color: var(--faq-text-muted); line-height: 1.6; margin-bottom: 45px; }
-.category-menu { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-.category-btn { width: 100%; text-align: left; padding: 18px 25px; font-size: 15px; font-weight: 600; border: none; border-radius: 50px; background: transparent; color: var(--faq-text-muted); cursor: pointer; transition: all 0.3s ease; display: flex; justify-content: space-between; align-items: center; }
-.category-btn:hover { background: rgba(255,255,255,0.1); color: white; padding-left: 30px; }
-.category-btn.active { background: var(--faq-active-bg); color: var(--faq-active-text); box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-weight: 800; }
-.arrow svg { width: 18px; height: 18px; fill: currentColor; }
-.faq-content-area { position: relative; height: 100%; background-color: var(--faq-tan-bg); overflow: hidden; }
-.cards-wrapper { padding: 0; position: relative; height: 100%; display: flex; flex-direction: column; align-items: center; padding-top: 50vh; padding-bottom: 50vh; box-sizing: border-box; }
-.faq-card { background: var(--faq-card-bg); border-radius: 16px; padding: 40px; margin-bottom: 60px; width: 100%; max-width: 800px; position: relative; border: 2px solid var(--faq-border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.05); opacity: 0.4; filter: blur(2px); transform: scale(0.95); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); cursor: pointer; pointer-events: none; }
-.faq-card.is-focused { opacity: 1; filter: blur(0); transform: scale(1); border-color: var(--faq-sidebar-bg); box-shadow: 0 20px 60px rgba(0, 98, 115, 0.15); pointer-events: auto; cursor: default; }
-.faq-card::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background-color: transparent; transition: background-color 0.3s ease; border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
-.faq-card.is-focused::before { background-color: var(--faq-accent-green); }
-.faq-card h3 { color: var(--faq-sidebar-bg); font-size: 22px; font-weight: 800; margin: 0 0 15px 0; }
-.faq-card div { color: var(--faq-text-dark); font-size: 16px; line-height: 1.7; }
-.faq-card a { color: var(--faq-accent-green); font-weight: 700; text-decoration: none; }
-.category-indicator { position: absolute; top: 30px; left: 60px; z-index: 50; font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--faq-accent-green); letter-spacing: 1.5px; background: white; padding: 10px 20px; border-radius: 20px; border: 1px solid var(--faq-border-color); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-@media (max-width: 900px) { .faq-wrapper { grid-template-columns: 1fr; height: auto; overflow: auto; } .faq-sidebar { padding: 60px 5%; } .faq-content-area { height: auto; overflow: visible; } .cards-wrapper { padding: 40px 5%; height: auto; display: block; } .faq-card { opacity: 1; filter: blur(0); transform: none; margin-bottom: 20px; pointer-events: auto; } .category-indicator { position: relative; top: 0; left: 0; margin-bottom: 20px; display: inline-block; } }
+    /* --- VARIABLES --- */
+    :root {
+        --faq-sidebar-bg: #006273;
+        --faq-tan-bg: #ffffff;
+        --faq-active-bg: #ffffff;  
+        --faq-active-text: #006273;
+        --faq-text-muted: rgba(255,255,255,0.7);
+        --faq-card-bg: #ffffff;    
+        --faq-accent-green: #318332; 
+        --faq-text-dark: #404041;
+        --faq-border-color: #cbd5e1;
+    }
+
+    /* --- RESET --- */
+    .full-width-section {
+        padding: 0 !important; margin: 0 !important;
+        max-width: 100% !important; width: 100% !important;
+    }
+
+    .faq-wrapper {
+        display: grid;
+        grid-template-columns: minmax(280px, 350px) 1fr; 
+        width: 100%;
+        height: 75vh; 
+        min-height: 600px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: var(--faq-tan-bg);
+        overflow: hidden; 
+    }
+
+    /* --- SIDEBAR --- */
+    .faq-sidebar {
+        padding: 130px 40px 80px 40px; /* Matched top padding to indicator */
+        background-color: var(--faq-sidebar-bg);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        z-index: 20;
+    }
+
+    .faq-header h1 {
+        font-size: clamp(32px, 5vw, 48px); 
+        font-weight: 800;
+        margin: 0 0 15px 0;
+        color: white;
+        line-height: 1;
+        letter-spacing: -1px;
+    }
+
+    .faq-header p {
+        font-size: 15px;
+        color: var(--faq-text-muted);
+        line-height: 1.6;
+        margin-bottom: 45px;
+    }
+
+    .category-menu { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+
+    .category-btn {
+        width: 100%;
+        text-align: left;
+        padding: 18px 25px;
+        font-size: 15px;
+        font-weight: 600;
+        border: none;
+        border-radius: 50px;
+        background: transparent;
+        color: var(--faq-text-muted);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .category-btn:hover {
+        background: rgba(255,255,255,0.1);
+        color: white;
+        padding-left: 30px;
+    }
+
+    .category-btn.active {
+        background: var(--faq-active-bg);
+        color: var(--faq-active-text);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        font-weight: 800;
+    }
+    
+    .arrow svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* --- CONTENT AREA (STATIC FRAME) --- */
+    .faq-content-area {
+        position: relative;
+        height: 100%;
+        background-color: var(--faq-tan-bg);
+        overflow: hidden; 
+    }
+
+    /* --- SCROLL VIEW (INNER SCROLLER) --- */
+    /* This new div handles scrolling so the label stays put */
+    .faq-scroll-view {
+        height: 100%;
+        width: 100%;
+        overflow: hidden; /* JS controls scroll */
+        position: relative;
+    }
+
+    .cards-wrapper {
+        padding: 0;
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50vh; 
+        padding-bottom: 60vh;
+        box-sizing: border-box;
+    }
+
+    /* --- THE CARD --- */
+    .faq-card {
+        background: var(--faq-card-bg);
+        border-radius: 16px;
+        padding: 40px;
+        margin-bottom: 60px;
+        width: 100%;
+        max-width: 800px; 
+        position: relative;
+        border: 2px solid var(--faq-border-color); 
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        opacity: 0.4;
+        filter: blur(2px);
+        transform: scale(0.95);
+        transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        cursor: pointer;
+        pointer-events: none;
+    }
+
+    .faq-card.is-focused {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+        border-color: var(--faq-sidebar-bg);
+        box-shadow: 0 20px 60px rgba(0, 98, 115, 0.15);
+        pointer-events: auto;
+        cursor: default;
+    }
+    
+    .faq-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 6px; height: 100%;
+        background-color: transparent;
+        transition: background-color 0.3s ease;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+    }
+    .faq-card.is-focused::before {
+        background-color: var(--faq-accent-green);
+    }
+
+    .faq-card h3 {
+        color: var(--faq-sidebar-bg);
+        font-size: 22px;
+        font-weight: 800;
+        margin: 0 0 15px 0;
+    }
+
+    .faq-card div {
+        color: var(--faq-text-dark);
+        font-size: 16px;
+        line-height: 1.7;
+    }
+    
+    .faq-card a { color: var(--faq-accent-green); font-weight: 700; text-decoration: none; }
+    .faq-card ul { margin-top: 10px; padding-left: 20px; }
+    .faq-card li { margin-bottom: 8px; }
+
+    /* --- STATIC LABEL --- */
+    /* Positioned absolutely inside the static main container */
+    .category-indicator {
+        position: absolute;
+        top: 130px; /* Safe distance to clear the header overlap */
+        left: 60px;
+        z-index: 100; /* High z-index to stay on top */
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: var(--faq-accent-green);
+        letter-spacing: 1.5px;
+        background: white; 
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: 1px solid var(--faq-border-color);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    @media (max-width: 900px) {
+        .faq-wrapper { grid-template-columns: 1fr; height: auto; overflow: auto; display: block; }
+        .faq-sidebar { padding: 60px 5%; width: 100%; box-sizing: border-box; }
+        .faq-content-area { height: auto; overflow: visible; }
+        .faq-scroll-view { overflow: visible; }
+        .cards-wrapper { padding: 40px 5%; height: auto; display: block; padding-top: 20px; padding-bottom: 20px; }
+        .faq-card { opacity: 1; filter: blur(0); transform: none; margin-bottom: 20px; pointer-events: auto; max-width: 100%; }
+        .category-indicator { position: relative; top: 0; left: 0; margin: 20px 5%; display: inline-block; }
+    }
 </style>
 
 <div class="faq-wrapper">
     <aside class="faq-sidebar">
         <div class="faq-header">
             <h1>FAQ</h1>
-            <p>Everything you need to know about the summit.</p>
+            <p>Everything you need to know about the meeting.</p>
         </div>
         <ul class="category-menu">
             <li><button class="category-btn active" data-target="general">General Questions <span class="arrow"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span></button></li>
-            <li><button class="category-btn" data-target="registration">Registration <span class="arrow"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span></button></li>
+            <li><button class="category-btn" data-target="registration">Registration & Payment <span class="arrow"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span></button></li>
             <li><button class="category-btn" data-target="health">Health & Safety <span class="arrow"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span></button></li>
-            <li><button class="category-btn" data-target="travel">Travel <span class="arrow"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span></button></li>
+            <li><button class="category-btn" data-target="travel">Travel & Venue <span class="arrow"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span></button></li>
         </ul>
     </aside>
-    <main class="faq-content-area" id="scrollContainer">
+
+    <main class="faq-content-area">
         <div id="categoryTitle" class="category-indicator">General Questions</div>
-        <div class="cards-wrapper" id="cardContainer"></div>
+        
+        <div id="scrollContainer" class="faq-scroll-view">
+            <div class="cards-wrapper" id="cardContainer">
+            </div>
+        </div>
     </main>
 </div>
 
 <script>
-const faqData = { general: [ { q: "What is the Spring Membership Meeting?", a: "The Spring Meeting is an opportunity for you to engage with state aging and disabilities directors, Medicaid LTSS directors, and federal officials to share promising practices." }, { q: "Who should attend and why?", a: "ADvancing States members and partnering sponsors are encouraged to attend. Your participation is invaluable to help other states develop their work." }, { q: "Are meals included?", a: "Yes! Breakfast and lunch are provided at the hotel on Tuesday and Wednesday. Monday features lunch at the venue." }, { q: "What is the dress code?", a: "We suggest business casual attire for all conference events." } ], registration: [ { q: "How do I pay?", a: "We accept credit cards (5% fee), checks, and purchase orders for government attendees." }, { q: "Cancellation Policy", a: "Cancellations must be in writing by April 1st for a refund minus $50 processing fee." } ], health: [ { q: "Health Protocols", a: "We ask attendees to monitor health and avoid participation if symptomatic." } ], travel: [ { q: "Venue Location", a: "Minneapolis Marriott City Center, 30 South 7th Street, Minneapolis, MN." }, { q: "Airport", a: "Minneapolis–Saint Paul International Airport (MSP) is 20 mins away." }, { q: "Hotel Booking", a: "Room block links will be emailed to registered attendees." } ] };
-const categoryLabels = { general: 'General Questions', registration: 'Registration', health: 'Health & Safety', travel: 'Travel' };
-const container = document.getElementById('cardContainer');
-const scrollContainer = document.getElementById('scrollContainer');
-const titleIndicator = document.getElementById('categoryTitle');
-const btns = document.querySelectorAll('.category-btn');
-let currentCardIndex = 0; let isScrolling = false; let cardElements = [];
-function render(category) { titleIndicator.textContent = categoryLabels[category]; container.innerHTML = ''; currentCardIndex = 0; faqData[category].forEach((item, i) => { const card = document.createElement('div'); card.className = `faq-card ${i===0?'is-focused':''}`; card.onclick = function() { forceScrollTo(i); }; card.innerHTML = `<h3>${item.q}</h3><div>${item.a}</div>`; container.appendChild(card); }); cardElements = document.querySelectorAll('.faq-card'); if(scrollContainer) scrollContainer.scrollTop = 0; setTimeout(() => forceScrollTo(0), 50); }
-function forceScrollTo(index) { if (index < 0 || index >= cardElements.length) return; currentCardIndex = index; const targetCard = cardElements[index]; cardElements.forEach(c => c.classList.remove('is-focused')); targetCard.classList.add('is-focused'); const containerCenter = scrollContainer.clientHeight / 2; const cardCenter = targetCard.offsetTop + (targetCard.clientHeight / 2); const scrollPos = cardCenter - containerCenter; scrollContainer.scrollTo({ top: scrollPos, behavior: 'smooth' }); }
-scrollContainer.addEventListener('wheel', (e) => { e.preventDefault(); if (isScrolling) return; const direction = e.deltaY > 0 ? 1 : -1; const nextIndex = currentCardIndex + direction; if (nextIndex >= 0 && nextIndex < cardElements.length) { isScrolling = true; forceScrollTo(nextIndex); setTimeout(() => { isScrolling = false; }, 600); } }, { passive: false });
-btns.forEach(btn => { btn.addEventListener('click', () => { btns.forEach(b => b.classList.remove('active')); btn.classList.add('active'); render(btn.dataset.target); }); });
-render('general');
+    const faqData = {
+        general: [
+            { q: "What is the Spring Membership Meeting?", a: "The Spring Meeting is an opportunity for you to engage with state aging and disabilities directors, Medicaid LTSS directors, federal officials, and other key service delivery partners who will share promising practices, present unique program ideas, and participate in problem-solving sessions with peer state agencies. Your participation in this robust meeting is invaluable to help other states develop their work in the upcoming year." },
+            { q: "Who should attend and why?", a: "ADvancing States members and partnering sponsors are encouraged to attend." },
+            { q: "What if I am not able to attend in-person?", a: "Please reach out to <a href='mailto:info@advancingstates.org'>info@advancingstates.org</a> for assistance." },
+            { q: "Are meals included?", a: "Yes! Conference meals include:<ul><li><strong>Monday, April 27:</strong> Lunch at the conference venue; dinner off-site</li><li><strong>Tuesday, April 28:</strong> Breakfast and lunch at the hotel; dinner off-site</li><li><strong>Wednesday, April 29:</strong> Breakfast and lunch at the hotel</li></ul>" },
+            { q: "How can I indicate dietary restrictions or request special meal accommodations?", a: "Vegetarian and vegan options will be provided at all conference meals; however, quantities will be limited. To ensure we can accommodate your dietary needs, please indicate any restrictions on your registration form. For questions or additional support, contact <a href='mailto:info@advancingstates.org'>info@advancingstates.org</a>." },
+            { q: "I requested a special meal. Who should I see about this?", a: "Please visit the registration help desk at the Minneapolis Marriott City Center, and one of our staff members will be happy to assist." },
+            { q: "Will I be able to select or register for sessions?", a: "All sessions are open to registered attendees unless otherwise noted in the agenda; no advance registration for specific sessions is required." },
+            { q: "What is the recommended dress code?", a: "We suggest business casual attire." },
+            { q: "I am a speaker with questions about my presentation. Who should I talk to?", a: "Please visit the registration help desk at the Minneapolis Marriott City Center, and one of our staff members will be able to assist." }
+        ],
+        registration: [
+            { q: "How do I pay for my registration?", a: "All attendees have the option to pay via credit card. Credit card payments include a 5% service fee added to the registration fee.<br><br>State, government, and non-profit attendees also have the option to pay by check or purchase order. If paying by check, please address it to:<br><br><strong>ADvancing States</strong><br>Re: 2026 ADvancing States Spring Meeting<br>241 18th St. S, Suite 403<br>Arlington, VA 22202" }
+        ],
+        health: [
+            { q: "What are the health and safety protocols?", a: "ADvancing States is committed to supporting the health and safety of all participants at the 2026 Spring Meeting. We ask that attendees monitor their health and avoid in-person participation if experiencing any signs of illness. Your cooperation helps ensure a smooth and successful event for everyone.<br><br>We also ask all attendees to follow our <a href='#'>Code of Conduct</a>." },
+            { q: "What safety tips should I keep in mind while in Minneapolis?", a: "The well-being of attendees is always a top priority for ADvancing States staff. For safety while away from the conference hotel, we advise attendees to:<ul><li>Walk in pairs or groups whenever possible</li><li>Remove name badges when outside the conference venue</li><li>Avoid dark or isolated areas</li><li>Plan routes ahead of time</li><li>Walk with confidence and remain aware of your surroundings</li></ul>" }
+        ],
+        travel: [
+            { q: "Where is the venue located?", a: "The 2026 ADvancing States Spring Meeting will be held at the Minneapolis Marriott City Center, located at 30 South 7th Street, Minneapolis, MN 55402." },
+            { q: "What is the nearest airport?", a: "Minneapolis–Saint Paul International Airport (MSP)." },
+            { q: "How do I book my hotel room?", a: "Please check back for hotel booking information." },
+            { q: "What is the price of a hotel room?", a: "Please check back for hotel pricing information." },
+            { q: "Where can I view the hotel floor plan?", a: "<a href='#'>Click here to view the floor plan.</a>" }
+        ]
+    };
+
+    const categoryLabels = { 
+        general: 'General Questions', 
+        registration: 'Registration & Payment', 
+        health: 'Health & Safety', 
+        travel: 'Travel & Venue' 
+    };
+    
+    const container = document.getElementById('cardContainer');
+    const scrollContainer = document.getElementById('scrollContainer');
+    const titleIndicator = document.getElementById('categoryTitle');
+    const btns = document.querySelectorAll('.category-btn');
+
+    let currentCardIndex = 0;
+    let isScrolling = false;
+    let cardElements = [];
+
+    function render(category) {
+        titleIndicator.textContent = categoryLabels[category];
+        container.innerHTML = '';
+        currentCardIndex = 0;
+        
+        faqData[category].forEach((item, i) => {
+            const card = document.createElement('div');
+            card.className = `faq-card ${i===0?'is-focused':''}`; 
+            
+            card.onclick = function() {
+                forceScrollTo(i);
+            };
+
+            card.innerHTML = `<h3>${item.q}</h3><div>${item.a}</div>`;
+            container.appendChild(card);
+        });
+
+        cardElements = document.querySelectorAll('.faq-card');
+        
+        if(scrollContainer) scrollContainer.scrollTop = 0;
+        setTimeout(() => forceScrollTo(0), 50);
+    }
+
+    function forceScrollTo(index) {
+        if (index < 0 || index >= cardElements.length) return;
+        
+        currentCardIndex = index;
+        const targetCard = cardElements[index];
+
+        cardElements.forEach(c => c.classList.remove('is-focused'));
+        targetCard.classList.add('is-focused');
+
+        const containerCenter = scrollContainer.clientHeight / 2;
+        const cardCenter = targetCard.offsetTop + (targetCard.clientHeight / 2);
+        const scrollPos = cardCenter - containerCenter;
+
+        scrollContainer.scrollTo({
+            top: scrollPos,
+            behavior: 'smooth'
+        });
+    }
+
+    scrollContainer.addEventListener('wheel', (e) => {
+        if (window.innerWidth > 900) { 
+            e.preventDefault(); 
+            if (isScrolling) return; 
+
+            const direction = e.deltaY > 0 ? 1 : -1;
+            const nextIndex = currentCardIndex + direction;
+
+            if (nextIndex >= 0 && nextIndex < cardElements.length) {
+                isScrolling = true;
+                forceScrollTo(nextIndex);
+                setTimeout(() => { isScrolling = false; }, 600); 
+            }
+        }
+    }, { passive: false });
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if(window.innerWidth > 900 && cardElements.length > 0) {
+                forceScrollTo(currentCardIndex);
+            }
+        }, 100);
+    });
+
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            render(btn.dataset.target);
+        });
+    });
+
+    render('general');
 </script>
