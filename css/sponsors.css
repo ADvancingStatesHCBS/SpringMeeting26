@@ -1,0 +1,260 @@
+/* =============================================
+   Sponsor Banner Section Styles
+   ============================================= */
+
+.sponsor-banner-wrapper {
+    padding: 20px 0;
+    background-color: #ffffff;
+    overflow: hidden;
+    width: 100%;
+}
+
+.sponsor-banner {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #ffffff;
+    padding: 25px 0 25px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.sponsor-label {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    font-style: italic;
+    color: #006273;
+    margin-bottom: 40px;
+}
+
+.sponsor-hint {
+    text-align: center;
+    font-size: 21px;
+    color: #006273;
+    margin-top: 40px;
+}
+
+/* --- Scrolling Track --- */
+.sponsor-track-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.sponsor-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: scroll 45s linear infinite;
+}
+
+.sponsor-track-container:hover .sponsor-track {
+    animation-play-state: paused;
+}
+
+.sponsor-logo {
+    flex-shrink: 0;
+    padding: 20px 40px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.sponsor-logo:hover {
+    transform: scale(1.08);
+}
+
+.sponsor-logo img {
+    max-height: 100px;
+    max-width: 220px;
+    object-fit: contain;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* --- Modal Overlay --- */
+.sponsor-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sponsor-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* --- Modal Container --- */
+.sponsor-modal {
+    background: white;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.sponsor-modal-overlay.active .sponsor-modal {
+    transform: scale(1) translateY(0);
+}
+
+/* --- Modal Close Button --- */
+.sponsor-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 1;
+}
+
+.sponsor-modal-close:hover {
+    background: #f5f5f5;
+    border-color: #ccc;
+}
+
+.sponsor-modal-close svg {
+    width: 18px;
+    height: 18px;
+    stroke: #666;
+    stroke-width: 2;
+}
+
+/* --- Modal Header --- */
+.sponsor-modal-header {
+    padding: 30px 30px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.sponsor-modal-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a4a5e;
+    margin-bottom: 16px;
+    padding-right: 40px;
+}
+
+.sponsor-modal-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sponsor-modal-logo {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sponsor-modal-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.sponsor-modal-badge {
+    background: linear-gradient(135deg, #1a4a5e 0%, #2d6a7a 100%);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* --- Modal Body --- */
+.sponsor-modal-body {
+    padding: 24px 30px;
+}
+
+.sponsor-modal-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.sponsor-modal-bio {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 28px;
+}
+
+/* --- Modal Connect Links --- */
+.sponsor-modal-connect {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.sponsor-modal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.sponsor-modal-link:hover {
+    background: #f8f8f8;
+    border-color: #1a4a5e;
+    color: #1a4a5e;
+}
+
+.sponsor-modal-link.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.sponsor-modal-link svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* --- Sponsor Responsive --- */
+@media (max-width: 768px) {
+    .sponsor-banner-wrapper { padding: 15px 0; }
+    .sponsor-label { font-size: 22px; margin-bottom: 20px; }
+    .sponsor-logo { padding: 15px 25px; }
+    .sponsor-logo img { max-height: 60px; max-width: 150px; }
+    .sponsor-modal { width: 95%; margin: 10px; }
+    .sponsor-modal-header { padding: 24px 20px 16px; }
+    .sponsor-modal-title { font-size: 20px; }
+    .sponsor-modal-body { padding: 20px; }
+    .sponsor-modal-bio { font-size: 14px; }
+}
