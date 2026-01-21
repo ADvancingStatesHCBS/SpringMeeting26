@@ -1,0 +1,231 @@
+/* =============================================
+   FAQ Section Styles
+   ============================================= */
+
+.faq-wrapper {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    width: 100%;
+    height: 700px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--faq-tan-bg);
+    overflow: hidden;
+}
+
+/* --- Sidebar --- */
+.faq-sidebar {
+    padding: 80px 40px;
+    background-color: var(--faq-sidebar-bg);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+}
+
+.faq-header h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin: 0 0 15px 0;
+    color: white;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.faq-header p {
+    font-size: 15px;
+    color: var(--faq-text-muted);
+    line-height: 1.6;
+    margin-bottom: 45px;
+}
+
+/* --- Category Menu --- */
+.category-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.category-btn {
+    width: 100%;
+    text-align: left;
+    padding: 18px 25px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    background: transparent;
+    color: var(--faq-text-muted);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    padding-left: 30px;
+}
+
+.category-btn.active {
+    background: var(--faq-active-bg);
+    color: var(--faq-active-text);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    font-weight: 800;
+}
+
+.arrow svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* --- Content Area --- */
+.faq-content-area {
+    position: relative;
+    height: 100%;
+    background-color: var(--faq-tan-bg);
+    overflow: hidden;
+}
+
+.cards-wrapper {
+    padding: 0;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50vh;
+    padding-bottom: 50vh;
+    box-sizing: border-box;
+}
+
+/* --- FAQ Card --- */
+.faq-card {
+    background: var(--faq-card-bg);
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 60px;
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+    border: 2px solid var(--faq-border-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    opacity: 0.4;
+    filter: blur(2px);
+    transform: scale(0.95);
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    cursor: pointer;
+    pointer-events: none;
+}
+
+/* --- Focused Card State --- */
+.faq-card.is-focused {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+    border-color: var(--faq-sidebar-bg);
+    box-shadow: 0 20px 60px rgba(0, 98, 115, 0.15);
+    pointer-events: auto;
+    cursor: default;
+}
+
+/* --- Green Accent Stripe --- */
+.faq-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.faq-card.is-focused::before {
+    background-color: var(--faq-accent-green);
+}
+
+/* --- Card Content --- */
+.faq-card h3 {
+    color: var(--faq-sidebar-bg);
+    font-size: 22px;
+    font-weight: 800;
+    margin: 0 0 15px 0;
+}
+
+.faq-card div {
+    color: var(--faq-text-dark);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.faq-card a {
+    color: var(--faq-accent-green);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* --- Category Indicator (Sticky Label) --- */
+.category-indicator {
+    position: absolute;
+    top: 30px;
+    left: 60px;
+    z-index: 50;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--faq-accent-green);
+    letter-spacing: 1.5px;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid var(--faq-border-color);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* --- FAQ Responsive --- */
+@media (max-width: 900px) {
+    .faq-wrapper {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow: auto;
+    }
+
+    .faq-sidebar {
+        padding: 60px 5%;
+    }
+
+    .faq-content-area {
+        height: auto;
+        overflow: visible;
+    }
+
+    .cards-wrapper {
+        padding: 40px 5%;
+        height: auto;
+        display: block;
+    }
+
+    .faq-card {
+        opacity: 1;
+        filter: blur(0);
+        transform: none;
+        margin-bottom: 20px;
+        pointer-events: auto;
+    }
+
+    .category-indicator {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+}
